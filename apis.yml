@@ -1,0 +1,29 @@
+aid: userpilot
+url: https://raw.githubusercontent.com/api-evangelist/userpilot/refs/heads/main/apis.yml
+name: Userpilot
+x-type: company
+description: >-
+  Userpilot is a product growth platform combining in-app onboarding, product analytics, NPS, and resource centers — designed for SaaS PLG teams.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Product
+  - Onboarding
+  - Analytics
+  - In-App
+  - Growth
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://userpilot.com/
+  - type: Plans
+    url: plans/userpilot-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/userpilot-rate-limits.yml
+  - type: FinOps
+    url: finops/userpilot-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
