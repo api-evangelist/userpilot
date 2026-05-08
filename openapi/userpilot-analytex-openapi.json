@@ -1,0 +1,1487 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Userpilot API",
+    "version": "1.0.0",
+    "termsOfService": "https://userpilot.io/terms-of-service/",
+    "description": "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com",
+    "contact": {
+      "name": "Userpilot",
+      "url": "https://userpilot.io",
+      "email": "support@userpilot.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://{environment}.userpilot.io",
+      "description": "Analytical data endpoint for Userpilot API. Choose the appropriate environment based on your data residency requirements and account type.",
+      "variables": {
+        "environment": {
+          "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment).",
+          "enum": [
+            "analytex",
+            "analytex-eu"
+          ],
+          "default": "analytex"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/v1/identify": {
+      "parameters": [],
+      "post": {
+        "tags": [
+          "Real-time"
+        ],
+        "summary": "Identify",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/AuthorizationHeader"
+          }
+        ],
+        "responses": {
+          "401": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "default": "application/json"
+                },
+                "example": "application/json"
+              }
+            },
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "details": {
+                            "type": "string"
+                          },
+                          "error": {
+                            "type": "string"
+                          },
+                          "error_code": {
+                            "type": "string",
+                            "format": "color"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "user_id"
+                ],
+                "example": {
+                  "user_id": "user_789456",
+                  "metadata": {
+                    "name": "Sarah Johnson",
+                    "email": "sarah.johnson@techstartup.com",
+                    "job_title": "Product Manager",
+                    "department": "Product",
+                    "location": "New York, NY",
+                    "hire_date": "2022-03-15",
+                    "years_experience": 8,
+                    "skills": "Product Strategy, User Research, Agile",
+                    "subscription_plan": "Pro",
+                    "last_login": "2024-01-15T10:30:00Z",
+                    "preferences_language": "en",
+                    "preferences_timezone": "America/New_York",
+                    "preferences_notifications": "email"
+                  },
+                  "company": {
+                    "company_id": "comp_techstartup_2024",
+                    "name": "TechStartup Inc.",
+                    "industry": "SaaS",
+                    "size": "50-100",
+                    "location": "New York, NY",
+                    "website": "https://techstartup.com",
+                    "subscription_tier": "Enterprise",
+                    "annual_revenue": "$5M-$10M",
+                    "founded_year": "2020",
+                    "primary_product": "Project Management Platform",
+                    "customer_count": 2500,
+                    "team_engineering": 25,
+                    "team_sales": 15,
+                    "team_marketing": 8,
+                    "team_support": 12
+                  }
+                },
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "The unique identifier for the user. This is the ID that Userpilot uses to identify the user.",
+                    "example": "123987"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Optional user metadata. You can add, remove, or modify any properties as needed for your use case. Note: Only string values are supported (numbers and dates should be sent as strings).",
+                    "additionalProperties": true,
+                    "properties": {
+                      "custom_user_property": {
+                        "type": "string",
+                        "description": "example: Name, Job title, etc."
+                      }
+                    }
+                  },
+                  "company": {
+                    "type": "object",
+                    "description": "Company information. If provided, `company_id` is required. Additional company properties are optional metadata.",
+                    "required": [
+                      "company_id"
+                    ],
+                    "properties": {
+                      "company_id": {
+                        "type": "string",
+                        "description": "The unique identifier for the company. This is the ID that Userpilot uses to identify the company.",
+                        "example": "company_123"
+                      },
+                      "custom_company_property": {
+                        "type": "string",
+                        "description": "example: Company name, Industry, etc."
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/users/bulk_identify": {
+      "parameters": [],
+      "post": {
+        "tags": [
+          "Real-time"
+        ],
+        "summary": "Users - Bulk Identify and Update",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/AuthorizationHeader"
+          }
+        ],
+        "responses": {
+          "202": {
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "default": "application/json"
+                },
+                "example": "Mon, 19 May 2025 07:29:12 GMT"
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "default": "application/json"
+                },
+                "example": "application/json; charset=utf-8"
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "default": 379
+                },
+                "example": "379"
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "keep-alive"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, private, must-revalidate"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Cowboy"
+              },
+              "x-request-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "GEDdGIKmRewi6ZIAEYcB"
+              }
+            },
+            "description": "Accepted - Bulk identify",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "end_time": {
+                      "nullable": true
+                    },
+                    "file_size": {
+                      "type": "integer"
+                    },
+                    "filename": {
+                      "type": "string"
+                    },
+                    "job_id": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "links": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "start_time": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "queued",
+                        "validating",
+                        "processing",
+                        "pending_refresh",
+                        "completed",
+                        "failed"
+                      ]
+                    },
+                    "total_rows": {
+                      "type": "integer"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "users": [
+                  {
+                    "user_id": "user_123",
+                    "company_id": "comp_techstartup_2024",
+                    "metadata": {
+                      "name": "John Smith",
+                      "email": "john.smith@techstartup.com",
+                      "job_title": "Support Manager",
+                      "tickets_created": "2024-01-15T08:00:00Z",
+                      "tickets_resolved": "2024-01-15T16:30:00Z",
+                      "tickets_pending": 3,
+                      "avg_resolution_time": 3.25,
+                      "customer_satisfaction": "95%",
+                      "escalation_count": 10
+                    }
+                  },
+                  {
+                    "user_id": "user_456",
+                    "company_id": "comp_techstartup_2024",
+                    "metadata": {
+                      "name": "Emma Davis",
+                      "email": "emma.davis@techstartup.com",
+                      "job_title": "Support Specialist",
+                      "tickets_created": "2024-01-15T09:15:00Z",
+                      "tickets_resolved": "2024-01-15T17:45:00Z",
+                      "tickets_pending": 5,
+                      "avg_resolution_time": 4.5,
+                      "customer_satisfaction": "92%",
+                      "escalation_count": 8
+                    }
+                  }
+                ]
+              },
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "users": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "user_id"
+                      ],
+                      "properties": {
+                        "user_id": {
+                          "type": "string",
+                          "description": "The unique identifier for the user. This is the ID that Userpilot uses to identify the user.",
+                          "example": "123987"
+                        },
+                        "company_id": {
+                          "type": "string",
+                          "description": "(Optional) The unique identifier for the company. This is the ID that Userpilot uses to identify the company.",
+                          "example": "company_123"
+                        },
+                        "metadata": {
+                          "type": "object",
+                          "description": "Optional user metadata. You can add, remove, or modify any properties as needed for your use case. Note: Only string values are supported.",
+                          "additionalProperties": true,
+                          "properties": {
+                            "custom_user_property": {
+                              "type": "string",
+                              "description": "example: Name, Job title, etc."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/companies/identify": {
+      "parameters": [],
+      "post": {
+        "summary": "Identify Company",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/AuthorizationHeader"
+          }
+        ],
+        "responses": {
+          "202": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "description": "Accepted - Company identification successful"
+          },
+          "400": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "description": "Bad Request - Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "details": {
+                            "type": "string"
+                          },
+                          "error": {
+                            "type": "string"
+                          },
+                          "error_code": {
+                            "type": "string",
+                            "format": "color"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "details": {
+                            "type": "string"
+                          },
+                          "error": {
+                            "type": "string"
+                          },
+                          "error_code": {
+                            "type": "string",
+                            "format": "color"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "company_id": "comp_techstartup_2024",
+                "metadata": {
+                  "name": "Acme Corporation",
+                  "industry": "Technology",
+                  "size": "100-500",
+                  "location": "San Francisco, CA",
+                  "website": "https://acme.com",
+                  "subscription_tier": "Enterprise",
+                  "annual_revenue": "$10M-$50M",
+                  "founded_year": "2020"
+                }
+              },
+              "schema": {
+                "type": "object",
+                "required": [
+                  "company_id"
+                ],
+                "properties": {
+                  "company_id": {
+                    "type": "string",
+                    "description": "The unique identifier for the company. This is the ID that Userpilot uses to identify the company."
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Optional company metadata. You can add, remove, or modify any properties as needed for your use case.",
+                    "additionalProperties": true,
+                    "properties": {
+                      "custom_company_property": {
+                        "type": "string",
+                        "description": "example: Company name, Industry, etc."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/companies/bulk_identify": {
+      "parameters": [],
+      "post": {
+        "summary": "Companies - Bulk Identify and Update",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/AuthorizationHeader"
+          }
+        ],
+        "responses": {
+          "202": {
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 19 May 2025 07:29:12 GMT"
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json; charset=utf-8"
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "379"
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "keep-alive"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, private, must-revalidate"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Cowboy"
+              },
+              "x-request-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "GEDdGIKmRewi6ZIAEYcB"
+              }
+            },
+            "description": "Accepted - Bulk identify",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "end_time": {
+                      "nullable": true
+                    },
+                    "file_size": {
+                      "type": "integer"
+                    },
+                    "filename": {
+                      "type": "string"
+                    },
+                    "job_id": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "links": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "start_time": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "queued",
+                        "validating",
+                        "processing",
+                        "pending_refresh",
+                        "completed",
+                        "failed"
+                      ]
+                    },
+                    "total_rows": {
+                      "type": "integer"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "companies": [
+                  {
+                    "company_id": "comp_techstartup_2024",
+                    "metadata": {
+                      "subscription_status": "active",
+                      "subscription_plan": "enterprise",
+                      "deal_size": "$50,000",
+                      "monthly_active_users": 1500,
+                      "platform_usage_score": 85,
+                      "account_manager": "Sarah Wilson"
+                    }
+                  },
+                  {
+                    "company_id": "comp_saas_corp_2024",
+                    "metadata": {
+                      "subscription_status": "trial",
+                      "subscription_plan": "pro",
+                      "deal_size": "$10,000",
+                      "monthly_active_users": 500,
+                      "platform_usage_score": 65,
+                      "account_manager": "Mike Thompson"
+                    }
+                  }
+                ]
+              },
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "companies": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "company_id"
+                      ],
+                      "properties": {
+                        "company_id": {
+                          "type": "string",
+                          "description": "The unique identifier for the company"
+                        },
+                        "metadata": {
+                          "type": "object",
+                          "description": "Optional company metadata. You can add, remove, or modify any properties as needed for your use case.",
+                          "additionalProperties": true,
+                          "properties": {
+                            "custom_company_property": {
+                              "type": "string",
+                              "description": "example: Company name, Industry, etc."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/track": {
+      "parameters": [],
+      "post": {
+        "summary": "Track Events",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/AuthorizationHeader"
+          }
+        ],
+        "responses": {
+          "202": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "description": "Accepted - Event tracking successful"
+          },
+          "400": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "default": "application/json"
+                },
+                "example": "application/json"
+              }
+            },
+            "description": "Bad Request - Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "details": {
+                            "type": "string"
+                          },
+                          "error": {
+                            "type": "string"
+                          },
+                          "error_code": {
+                            "type": "string",
+                            "format": "color"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "default": "application/json"
+                },
+                "example": "application/json"
+              }
+            },
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "details": {
+                            "type": "string"
+                          },
+                          "error": {
+                            "type": "string"
+                          },
+                          "error_code": {
+                            "type": "string",
+                            "format": "color"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "user_id": "user_789456",
+                "event_name": "schedule_appointment",
+                "metadata": {
+                  "appointment_date": "2024-02-01T10:00:00Z",
+                  "appointment_type": "Initial Consultation",
+                  "scheduled_by": "Sarah Johnson",
+                  "specialty": "Cardiology",
+                  "provider_id": "dr_smith_123",
+                  "appointment_status": "confirmed"
+                }
+              },
+              "schema": {
+                "type": "object",
+                "required": [
+                  "user_id",
+                  "event_name"
+                ],
+                "properties": {
+                  "user_id": {
+                    "type": "string",
+                    "description": "The unique identifier for the user. This is the ID that Userpilot uses to identify the user.",
+                    "example": "user_789456"
+                  },
+                  "event_name": {
+                    "type": "string",
+                    "description": "Name of the event being tracked. Use descriptive names like 'schedule_appointment', 'purchase_completed', etc.",
+                    "example": "schedule_appointment"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Optional event metadata. You can add, remove, or modify any properties as needed for your use case.",
+                    "additionalProperties": true,
+                    "properties": {
+                      "custom_event_property": {
+                        "type": "string",
+                        "description": "example: Date and time of the appointment, Product name, etc."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/background_jobs": {
+      "parameters": [],
+      "get": {
+        "summary": "List jobs",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/AuthorizationHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 19 May 2025 07:27:14 GMT"
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json; charset=utf-8"
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "1660"
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "keep-alive"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, private, must-revalidate"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Cowboy"
+              },
+              "x-request-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "GEDc_N9Cd5nU5pgACtJD"
+              }
+            },
+            "description": "OK - List jobs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "elapsed_time": {
+                        "type": "integer"
+                      },
+                      "end_time": {
+                        "type": "string",
+                        "format": "style"
+                      },
+                      "file_size": {
+                        "type": "integer"
+                      },
+                      "filename": {
+                        "type": "string"
+                      },
+                      "job_id": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "links": {
+                        "type": "string",
+                        "format": "style"
+                      },
+                      "start_time": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "queued",
+                          "validating",
+                          "processing",
+                          "pending_refresh",
+                          "completed",
+                          "failed"
+                        ]
+                      },
+                      "total_rows": {
+                        "type": "integer"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/background_jobs/{{job_id}}": {
+      "parameters": [],
+      "get": {
+        "summary": "Check job status",
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "example": "bulk:jobs:NX-ac54070e:c6f91301-54c1-4df7-a077-b34715c38875",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/AuthorizationHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 19 May 2025 07:25:29 GMT"
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json; charset=utf-8"
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": "436"
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "keep-alive"
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "max-age=0, private, must-revalidate"
+              },
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Cowboy"
+              },
+              "x-request-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "GEDc5I83W1RogTAAD21i"
+              }
+            },
+            "description": "OK - Check job status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "completed_rows": {
+                      "type": "integer"
+                    },
+                    "elapsed_time": {
+                      "type": "integer"
+                    },
+                    "end_time": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "file_size": {
+                      "type": "integer"
+                    },
+                    "filename": {
+                      "type": "string"
+                    },
+                    "job_id": {
+                      "type": "string",
+                      "format": "uri"
+                    },
+                    "links": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "start_time": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "queued",
+                        "validating",
+                        "processing",
+                        "pending_refresh",
+                        "completed",
+                        "failed"
+                      ]
+                    },
+                    "total_rows": {
+                      "type": "integer"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "users": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "user_id": {
+                          "type": "string"
+                        },
+                        "company_id": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "type": "object",
+                          "properties": {
+                            "custom_user_property": {
+                              "type": "string",
+                              "description": "example: Name, Job title, etc."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/imports": {
+      "parameters": [],
+      "post": {
+        "summary": "Request Data Import",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "example": "multipart/form-data",
+            "schema": {
+              "type": "string",
+              "default": "multipart/form-data"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/AuthorizationHeader"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "example": {
+                "file": "path/to/data_import.csv"
+              },
+              "schema": {
+                "type": "object",
+                "required": [
+                  "file"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "CSV/NDJSON file containing user or company data to import"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "default": "application/json"
+                },
+                "example": "application/json"
+              }
+            },
+            "description": "CSV - OK - Import job successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "end_time": {
+                      "type": "string"
+                    },
+                    "file_size": {
+                      "type": "string"
+                    },
+                    "filename": {
+                      "type": "string"
+                    },
+                    "job_id": {
+                      "type": "string"
+                    },
+                    "links": {
+                      "type": "string"
+                    },
+                    "start_time": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "queued",
+                        "validating",
+                        "processing",
+                        "pending_refresh",
+                        "completed",
+                        "failed"
+                      ]
+                    },
+                    "total_rows": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "description": "Unauthorized - Invalid API key or insufficient permissions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "details": {
+                            "type": "string"
+                          },
+                          "error": {
+                            "type": "string"
+                          },
+                          "error_code": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              }
+            },
+            "description": "Conflict - Import job already in progress",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "details": {
+                            "type": "string"
+                          },
+                          "error": {
+                            "type": "string"
+                          },
+                          "error_code": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "AuthorizationHeader": {
+        "name": "Authorization",
+        "in": "header",
+        "required": true,
+        "description": "API authentication token in the format: `Token {{API_KEY}}`\nObtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+        "schema": {
+          "type": "string",
+          "default": "Token ABC_1234_EFGH_5678"
+        },
+        "example": "Token ABC_1234_EFGH_5678"
+      }
+    },
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "details": {
+                  "type": "string",
+                  "description": "Detailed error information."
+                },
+                "error": {
+                  "type": "string",
+                  "description": "Short error code or label."
+                },
+                "error_code": {
+                  "type": "string",
+                  "description": "Error code for programmatic handling."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Human-readable error message."
+                }
+              }
+            }
+          }
+        },
+        "description": "Standard error response object."
+      }
+    }
+  }
+}

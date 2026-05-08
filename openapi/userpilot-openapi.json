@@ -1,0 +1,6 @@
+{
+  "info": {
+    "title": "Userpilot API",
+    "description": "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nAuthentication:\n All endpoints that require authentication expect an HTTP header in the following format:\n\n Authorization: Token {{API_KEY}}\n\nExample (cURL):\n curl -X GET 'https://analytix.userpilot.io/v1/identify' \\\n   -H 'Authorization: Token abcd1234efgh5678' \\\n   -H 'Content-Type: application/json'\n\nContact Support:\n Email: support@userpilot.com"
+  }
+} 
