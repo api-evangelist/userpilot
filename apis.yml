@@ -76,6 +76,10 @@ common:
     url: rate-limits/userpilot-rate-limits.yml
   - type: FinOps
     url: finops/userpilot-finops.yml
+  - type: Integrations
+    url: https://userpilot.com/integrations/
+integrations:
+  - name: Bulk Export/Import Seamless data transfer, hassle-free
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
