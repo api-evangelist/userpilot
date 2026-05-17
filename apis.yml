@@ -1,7 +1,7 @@
 aid: userpilot
 url: https://raw.githubusercontent.com/api-evangelist/userpilot/refs/heads/main/apis.yml
 name: Userpilot
-x-type: company
+kind: company
 description: >-
   Userpilot is a product growth platform for in-app onboarding, user engagement, surveys, and product analytics — without code.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
