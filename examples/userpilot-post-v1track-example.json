@@ -1,0 +1,24 @@
+{
+  "operationId": "post-v1track",
+  "method": "POST",
+  "path": "/v1/track",
+  "summary": "Track Events",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "user_id": "user_789456",
+        "event_name": "schedule_appointment",
+        "metadata": {
+          "appointment_date": "2024-02-01T10:00:00Z",
+          "appointment_type": "Initial Consultation",
+          "scheduled_by": "Sarah Johnson",
+          "specialty": "Cardiology",
+          "provider_id": "dr_smith_123",
+          "appointment_status": "confirmed"
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

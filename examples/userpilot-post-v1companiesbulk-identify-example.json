@@ -1,0 +1,38 @@
+{
+  "operationId": "post-v1companiesbulk-identify",
+  "method": "POST",
+  "path": "/v1/companies/bulk_identify",
+  "summary": "Companies - Bulk Identify and Update",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "companies": [
+          {
+            "company_id": "comp_techstartup_2024",
+            "metadata": {
+              "subscription_status": "active",
+              "subscription_plan": "enterprise",
+              "deal_size": "$50,000",
+              "monthly_active_users": 1500,
+              "platform_usage_score": 85,
+              "account_manager": "Sarah Wilson"
+            }
+          },
+          {
+            "company_id": "comp_saas_corp_2024",
+            "metadata": {
+              "subscription_status": "trial",
+              "subscription_plan": "pro",
+              "deal_size": "$10,000",
+              "monthly_active_users": 500,
+              "platform_usage_score": 65,
+              "account_manager": "Mike Thompson"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

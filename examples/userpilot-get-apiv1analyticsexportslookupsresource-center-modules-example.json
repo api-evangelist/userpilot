@@ -1,0 +1,20 @@
+{
+  "operationId": "get-apiv1analyticsexportslookupsresource-center-modules",
+  "method": "GET",
+  "path": "/api/v1/analytics/exports/lookups/resource_center_modules",
+  "summary": "Get resource center modules",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": [
+        {
+          "display_name": "Resource Center Module A",
+          "key": "resource_center_module_a",
+          "data_type": "string"
+        }
+      ]
+    }
+  ]
+}

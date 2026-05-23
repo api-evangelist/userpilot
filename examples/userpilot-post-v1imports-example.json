@@ -1,0 +1,15 @@
+{
+  "operationId": "post-v1imports",
+  "method": "POST",
+  "path": "/v1/imports",
+  "summary": "Request Data Import",
+  "requestExamples": [
+    {
+      "contentType": "multipart/form-data",
+      "example": {
+        "file": "path/to/data_import.csv"
+      }
+    }
+  ],
+  "responseExamples": []
+}

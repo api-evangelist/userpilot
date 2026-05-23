@@ -1,0 +1,25 @@
+{
+  "operationId": "get-apiv1analyticsexportslookupsembeds",
+  "method": "GET",
+  "path": "/api/v1/analytics/exports/lookups/embeds",
+  "summary": "Get embeds",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": [
+        {
+          "id": 77,
+          "title": "Promo Banner",
+          "type": "banner"
+        },
+        {
+          "id": 92,
+          "title": "Feature Card",
+          "type": "card"
+        }
+      ]
+    }
+  ]
+}

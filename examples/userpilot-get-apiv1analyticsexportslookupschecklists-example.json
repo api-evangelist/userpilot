@@ -1,0 +1,20 @@
+{
+  "operationId": "get-apiv1analyticsexportslookupschecklists",
+  "method": "GET",
+  "path": "/api/v1/analytics/exports/lookups/checklists",
+  "summary": "Get checklists (with tasks)",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": [
+        {
+          "display_name": "Checklist A",
+          "key": "checklist_a",
+          "data_type": "string"
+        }
+      ]
+    }
+  ]
+}

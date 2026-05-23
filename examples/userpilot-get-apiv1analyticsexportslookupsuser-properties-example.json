@@ -1,0 +1,23 @@
+{
+  "operationId": "get-apiv1analyticsexportslookupsuser-properties",
+  "method": "GET",
+  "path": "/api/v1/analytics/exports/lookups/user_properties",
+  "summary": "Get user properties",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": [
+        {
+          "id": 1,
+          "type": "user_property",
+          "key": "email",
+          "display_name": "Email",
+          "data_type": "string",
+          "is_auto_property": false
+        }
+      ]
+    }
+  ]
+}

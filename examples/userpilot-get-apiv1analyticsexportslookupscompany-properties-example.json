@@ -1,0 +1,23 @@
+{
+  "operationId": "get-apiv1analyticsexportslookupscompany-properties",
+  "method": "GET",
+  "path": "/api/v1/analytics/exports/lookups/company_properties",
+  "summary": "Get company properties",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": [
+        {
+          "id": 10,
+          "type": "company_property",
+          "key": "company_name",
+          "display_name": "Company Name",
+          "data_type": "string",
+          "is_auto_property": false
+        }
+      ]
+    }
+  ]
+}

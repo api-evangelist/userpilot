@@ -1,0 +1,42 @@
+{
+  "operationId": "get-apiv1analyticsexportslookupsevents-properties",
+  "method": "GET",
+  "path": "/api/v1/analytics/exports/lookups/events_properties",
+  "summary": "Get trackable events' properties/attributes (paginated)",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": {
+        "data": [
+          {
+            "id": 12,
+            "key": "url",
+            "display_name": "URL",
+            "is_auto_property": true,
+            "is_mobile_auto_property": false,
+            "data_type": "string",
+            "category": "css_attribute",
+            "description": "Page URL",
+            "is_archived": false,
+            "event": {
+              "id": 33,
+              "display_name": "page_view"
+            },
+            "inserted_at": "2025-01-01T00:00:00Z",
+            "last_seen": "2025-01-10T00:00:00Z"
+          }
+        ],
+        "metadata": {
+          "cursor": {
+            "after": "...",
+            "before": null
+          },
+          "limit": 50,
+          "total_count": 53
+        }
+      }
+    }
+  ]
+}

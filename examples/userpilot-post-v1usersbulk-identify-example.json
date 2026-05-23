@@ -1,0 +1,46 @@
+{
+  "operationId": "post-v1usersbulk-identify",
+  "method": "POST",
+  "path": "/v1/users/bulk_identify",
+  "summary": "Users - Bulk Identify and Update",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "users": [
+          {
+            "user_id": "user_123",
+            "company_id": "comp_techstartup_2024",
+            "metadata": {
+              "name": "John Smith",
+              "email": "john.smith@techstartup.com",
+              "job_title": "Support Manager",
+              "tickets_created": "2024-01-15T08:00:00Z",
+              "tickets_resolved": "2024-01-15T16:30:00Z",
+              "tickets_pending": 3,
+              "avg_resolution_time": 3.25,
+              "customer_satisfaction": "95%",
+              "escalation_count": 10
+            }
+          },
+          {
+            "user_id": "user_456",
+            "company_id": "comp_techstartup_2024",
+            "metadata": {
+              "name": "Emma Davis",
+              "email": "emma.davis@techstartup.com",
+              "job_title": "Support Specialist",
+              "tickets_created": "2024-01-15T09:15:00Z",
+              "tickets_resolved": "2024-01-15T17:45:00Z",
+              "tickets_pending": 5,
+              "avg_resolution_time": 4.5,
+              "customer_satisfaction": "92%",
+              "escalation_count": 8
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

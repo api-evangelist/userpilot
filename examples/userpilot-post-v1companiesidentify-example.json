@@ -1,0 +1,25 @@
+{
+  "operationId": "post-v1companiesidentify",
+  "method": "POST",
+  "path": "/v1/companies/identify",
+  "summary": "Identify Company",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "company_id": "comp_techstartup_2024",
+        "metadata": {
+          "name": "Acme Corporation",
+          "industry": "Technology",
+          "size": "100-500",
+          "location": "San Francisco, CA",
+          "website": "https://acme.com",
+          "subscription_tier": "Enterprise",
+          "annual_revenue": "$10M-$50M",
+          "founded_year": "2020"
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

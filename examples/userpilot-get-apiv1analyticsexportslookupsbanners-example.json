@@ -1,0 +1,19 @@
+{
+  "operationId": "get-apiv1analyticsexportslookupsbanners",
+  "method": "GET",
+  "path": "/api/v1/analytics/exports/lookups/banners",
+  "summary": "Get banners",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": [
+        {
+          "id": 77,
+          "title": "Promo Banner"
+        }
+      ]
+    }
+  ]
+}

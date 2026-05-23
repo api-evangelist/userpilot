@@ -1,0 +1,20 @@
+{
+  "operationId": "get-apiv1analyticsexportslookupsfeatures-events",
+  "method": "GET",
+  "path": "/api/v1/analytics/exports/lookups/features_events",
+  "summary": "Get features & events",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": [
+        {
+          "display_name": "Feature A",
+          "key": "feature_a",
+          "data_type": "string"
+        }
+      ]
+    }
+  ]
+}

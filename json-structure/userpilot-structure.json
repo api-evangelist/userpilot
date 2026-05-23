@@ -1,0 +1,78 @@
+{
+  "provider": "Userpilot",
+  "providerId": "userpilot",
+  "kind": "json-structure",
+  "description": "Structural overview of the Userpilot API surface; extracted from openapi/.",
+  "schemaCount": 1,
+  "operationCount": 8,
+  "schemas": [
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/v1/identify",
+      "operationId": null,
+      "summary": "Identify",
+      "tags": [
+        "Real-time"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/users/bulk_identify",
+      "operationId": null,
+      "summary": "Users - Bulk Identify and Update",
+      "tags": [
+        "Real-time"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v1/companies/identify",
+      "operationId": null,
+      "summary": "Identify Company",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/companies/bulk_identify",
+      "operationId": null,
+      "summary": "Companies - Bulk Identify and Update",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/track",
+      "operationId": null,
+      "summary": "Track Events",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/v1/background_jobs",
+      "operationId": null,
+      "summary": "List jobs",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/v1/background_jobs/{{job_id}}",
+      "operationId": null,
+      "summary": "Check job status",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/v1/imports",
+      "operationId": null,
+      "summary": "Request Data Import",
+      "tags": []
+    }
+  ]
+}

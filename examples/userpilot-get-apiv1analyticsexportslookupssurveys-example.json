@@ -1,0 +1,28 @@
+{
+  "operationId": "get-apiv1analyticsexportslookupssurveys",
+  "method": "GET",
+  "path": "/api/v1/analytics/exports/lookups/surveys",
+  "summary": "Get surveys (with modules)",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": [
+        {
+          "id": 45,
+          "title": "CSAT Survey",
+          "platform": "web",
+          "modules": [
+            {
+              "id": 1,
+              "order": 1,
+              "type": "open_text",
+              "question": "How was it?"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

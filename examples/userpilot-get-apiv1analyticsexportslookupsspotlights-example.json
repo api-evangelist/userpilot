@@ -1,0 +1,19 @@
+{
+  "operationId": "get-apiv1analyticsexportslookupsspotlights",
+  "method": "GET",
+  "path": "/api/v1/analytics/exports/lookups/spotlights",
+  "summary": "Get spotlights",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": [
+        {
+          "id": 88,
+          "title": "New Feature Spotlight"
+        }
+      ]
+    }
+  ]
+}
