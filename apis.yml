@@ -87,6 +87,8 @@ common:
     url: finops/userpilot-finops.yml
   - type: Integrations
     url: https://userpilot.com/integrations/
+  - type: LLMsTxt
+    url: https://docs.userpilot.com/llms.txt
 integrations:
   - name: Bulk Export/Import Seamless data transfer, hassle-free
 maintainers:
