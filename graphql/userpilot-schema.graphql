@@ -1,0 +1,1048 @@
+"""
+Userpilot GraphQL Schema
+Conceptual schema covering the Userpilot product growth platform:
+in-app onboarding, product tours, checklists, surveys, NPS, feature tagging,
+event tracking, segmentation, user/company identification, and administration.
+
+Source: REST APIs at analytex.userpilot.io and appex.userpilot.io
+Docs: https://docs.userpilot.com/api-references/overview
+"""
+
+# ─── Scalars ────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+
+# ─── Enums ──────────────────────────────────────────────────────────────────
+
+"""High-level type of an in-app experience."""
+enum ExperienceType {
+  FLOW
+  MODAL
+  TOOLTIP
+  HOTSPOT
+  BANNER
+  CHECKLIST
+  SURVEY
+  NPS
+  PRODUCT_TOUR
+  RESOURCE_CENTER
+  ANNOUNCEMENT
+  MICROSURVEY
+}
+
+"""Publication / lifecycle state of an experience."""
+enum ExperienceStatus {
+  DRAFT
+  LIVE
+  PAUSED
+  ARCHIVED
+}
+
+"""Type of a step within a flow or product tour."""
+enum FlowStepType {
+  MODAL
+  TOOLTIP
+  HOTSPOT
+  BANNER
+  VIDEO
+  DRIVEN_ACTION
+  BRANCH
+}
+
+"""Animation style applied to a tour step."""
+enum TourAnimation {
+  NONE
+  FADE
+  SLIDE_UP
+  SLIDE_DOWN
+  BOUNCE
+}
+
+"""Logical operator for combining segment conditions."""
+enum SegmentOperator {
+  AND
+  OR
+}
+
+"""Comparison operator for a segment condition."""
+enum ConditionComparator {
+  EQUALS
+  NOT_EQUALS
+  CONTAINS
+  NOT_CONTAINS
+  GREATER_THAN
+  LESS_THAN
+  GREATER_THAN_OR_EQUAL
+  LESS_THAN_OR_EQUAL
+  IS_SET
+  IS_NOT_SET
+  STARTS_WITH
+  ENDS_WITH
+}
+
+"""NPS respondent classification."""
+enum NPSCategory {
+  PROMOTER
+  PASSIVE
+  DETRACTOR
+}
+
+"""HTTP method for a webhook."""
+enum WebhookMethod {
+  POST
+  PUT
+}
+
+"""Checklist item completion trigger mechanism."""
+enum ChecklistItemTrigger {
+  MANUAL
+  EVENT
+  EXPERIENCE_COMPLETION
+  PAGE_VISIT
+}
+
+"""Resource center item type."""
+enum ResourceCenterItemType {
+  ARTICLE
+  VIDEO
+  CHECKLIST
+  FLOW
+  LINK
+  SURVEY
+}
+
+# ─── Interfaces ──────────────────────────────────────────────────────────────
+
+"""Base fields shared by all in-app experience types."""
+interface ExperienceBase {
+  id: ID!
+  name: String!
+  type: ExperienceType!
+  status: ExperienceStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Experience Types ────────────────────────────────────────────────────────
+
+"""Top-level experience record as returned in list/summary endpoints."""
+type Experience implements ExperienceBase {
+  id: ID!
+  name: String!
+  type: ExperienceType!
+  status: ExperienceStatus!
+  trigger: ExperienceTrigger
+  segment: Segment
+  goal: Goal
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  publishedAt: DateTime
+  viewCount: Int
+  completionCount: Int
+  completionRate: Float
+}
+
+"""Detailed experience record including all configuration and content."""
+type ExperienceDetails implements ExperienceBase {
+  id: ID!
+  name: String!
+  type: ExperienceType!
+  status: ExperienceStatus!
+  trigger: ExperienceTrigger
+  segment: Segment
+  goal: Goal
+  steps: [FlowStep!]
+  modal: Modal
+  banner: Banner
+  tooltip: Tooltip
+  hotspot: HotSpot
+  checklist: Checklist
+  survey: Survey
+  productTour: ProductTour
+  resourceCenter: ResourceCenter
+  announcement: Announcement
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  publishedAt: DateTime
+  viewCount: Int
+  completionCount: Int
+  completionRate: Float
+  metadata: JSON
+}
+
+"""Trigger condition that activates an experience for a given user session."""
+type ExperienceTrigger {
+  id: ID!
+  type: String!
+  url: String
+  urlMatchType: String
+  event: String
+  delay: Int
+  frequency: String
+  conditions: [SegmentCondition!]
+}
+
+# ─── Flow / Tour Types ───────────────────────────────────────────────────────
+
+"""A single step inside a multi-step flow."""
+type FlowStep {
+  id: ID!
+  order: Int!
+  type: FlowStepType!
+  title: String
+  body: String
+  imageUrl: String
+  videoUrl: String
+  buttonLabel: String
+  buttonAction: String
+  targetElement: String
+  modal: Modal
+  tooltip: Tooltip
+  hotspot: HotSpot
+  banner: Banner
+  branchConditions: [SegmentCondition!]
+}
+
+"""Conversion metrics for a flow experience."""
+type FlowConversion {
+  experienceId: ID!
+  views: Int!
+  completions: Int!
+  drops: [FlowStepDrop!]
+  conversionRate: Float!
+  period: String
+}
+
+"""Drop-off data at a particular flow step."""
+type FlowStepDrop {
+  stepId: ID!
+  stepOrder: Int!
+  stepType: FlowStepType!
+  dropCount: Int!
+  dropRate: Float!
+}
+
+"""A full product tour composed of ordered steps."""
+type ProductTour implements ExperienceBase {
+  id: ID!
+  name: String!
+  type: ExperienceType!
+  status: ExperienceStatus!
+  steps: [TourStep!]!
+  trigger: ExperienceTrigger
+  segment: Segment
+  goal: Goal
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  completionRate: Float
+}
+
+"""A single step within a product tour."""
+type TourStep {
+  id: ID!
+  order: Int!
+  title: String
+  body: String!
+  targetElement: String
+  animation: TourAnimation
+  imageUrl: String
+  videoUrl: String
+  buttonLabel: String
+  buttonAction: String
+  hotspot: HotSpot
+  tooltip: Tooltip
+}
+
+# ─── UI Element Types ────────────────────────────────────────────────────────
+
+"""A modal dialog experience element."""
+type Modal {
+  id: ID!
+  title: String
+  body: String!
+  imageUrl: String
+  videoUrl: String
+  primaryButtonLabel: String
+  primaryButtonAction: String
+  secondaryButtonLabel: String
+  secondaryButtonAction: String
+  dismissible: Boolean!
+  size: String
+  position: String
+  theme: JSON
+}
+
+"""A tooltip anchored to a page element."""
+type Tooltip {
+  id: ID!
+  title: String
+  body: String!
+  targetElement: String!
+  placement: String
+  imageUrl: String
+  primaryButtonLabel: String
+  primaryButtonAction: String
+  dismissible: Boolean!
+  theme: JSON
+}
+
+"""A hotspot beacon that reveals a tooltip on click."""
+type HotSpot {
+  id: ID!
+  targetElement: String!
+  label: String
+  tooltip: Tooltip
+  beaconColor: String
+  pulsing: Boolean!
+}
+
+"""A persistent in-app banner."""
+type Banner {
+  id: ID!
+  message: String!
+  ctaLabel: String
+  ctaUrl: String
+  dismissible: Boolean!
+  backgroundColor: String
+  textColor: String
+  position: String
+}
+
+"""An in-app announcement (lightbox or full-screen overlay)."""
+type Announcement implements ExperienceBase {
+  id: ID!
+  name: String!
+  type: ExperienceType!
+  status: ExperienceStatus!
+  title: String!
+  body: String!
+  imageUrl: String
+  ctaLabel: String
+  ctaUrl: String
+  trigger: ExperienceTrigger
+  segment: Segment
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Checklist Types ─────────────────────────────────────────────────────────
+
+"""An onboarding checklist presented inside the app."""
+type Checklist implements ExperienceBase {
+  id: ID!
+  name: String!
+  type: ExperienceType!
+  status: ExperienceStatus!
+  title: String!
+  description: String
+  items: [ChecklistItem!]!
+  trigger: ExperienceTrigger
+  segment: Segment
+  goal: Goal
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  completionRate: Float
+}
+
+"""A single task item within a checklist."""
+type ChecklistItem {
+  id: ID!
+  order: Int!
+  label: String!
+  description: String
+  triggerType: ChecklistItemTrigger!
+  triggerEvent: String
+  triggerExperienceId: ID
+  triggerUrl: String
+  completedCount: Int
+}
+
+"""Checklist completion state for a specific user."""
+type ChecklistProgress {
+  userId: ID!
+  checklistId: ID!
+  completedItems: [ChecklistItemComplete!]!
+  totalItems: Int!
+  completedCount: Int!
+  completionRate: Float!
+  completedAt: DateTime
+}
+
+"""Record of a single checklist item being completed by a user."""
+type ChecklistItemComplete {
+  itemId: ID!
+  userId: ID!
+  completedAt: DateTime!
+}
+
+# ─── Survey Types ────────────────────────────────────────────────────────────
+
+"""A survey experience containing one or more questions."""
+type Survey implements ExperienceBase {
+  id: ID!
+  name: String!
+  type: ExperienceType!
+  status: ExperienceStatus!
+  title: String
+  questions: [SurveyQuestion!]!
+  trigger: ExperienceTrigger
+  segment: Segment
+  goal: Goal
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  responseCount: Int
+}
+
+"""A question within a survey."""
+type SurveyQuestion {
+  id: ID!
+  order: Int!
+  questionText: String!
+  questionType: String!
+  required: Boolean!
+  options: [String!]
+  minLabel: String
+  maxLabel: String
+  minValue: Int
+  maxValue: Int
+}
+
+"""A user's response to a survey."""
+type SurveyResponse {
+  id: ID!
+  surveyId: ID!
+  userId: ID!
+  answers: [SurveyAnswer!]!
+  submittedAt: DateTime!
+}
+
+"""A single answer within a survey response."""
+type SurveyAnswer {
+  questionId: ID!
+  value: String
+  numericValue: Int
+  selectedOptions: [String!]
+}
+
+"""An in-app survey triggered by product events."""
+type InAppSurvey implements ExperienceBase {
+  id: ID!
+  name: String!
+  type: ExperienceType!
+  status: ExperienceStatus!
+  questions: [SurveyQuestion!]!
+  trigger: ExperienceTrigger
+  segment: Segment
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  responseCount: Int
+}
+
+"""A lightweight single-question microsurvey."""
+type Microsurvey implements ExperienceBase {
+  id: ID!
+  name: String!
+  type: ExperienceType!
+  status: ExperienceStatus!
+  question: SurveyQuestion!
+  trigger: ExperienceTrigger
+  segment: Segment
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  responseCount: Int
+}
+
+"""A survey that is embedded within content (article or resource)."""
+type ContentSurvey {
+  id: ID!
+  name: String!
+  question: SurveyQuestion!
+  responseCount: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── NPS Types ───────────────────────────────────────────────────────────────
+
+"""The NPS survey question configuration."""
+type NPSQuestion {
+  id: ID!
+  questionText: String!
+  followUpText: String
+  minLabel: String
+  maxLabel: String
+}
+
+"""A single NPS score submitted by a user."""
+type NPSScore {
+  id: ID!
+  userId: ID!
+  score: Int!
+  category: NPSCategory!
+  comment: String
+  submittedAt: DateTime!
+}
+
+"""Aggregate NPS metrics for a given period."""
+type NPS {
+  score: Float!
+  promoters: Int!
+  passives: Int!
+  detractors: Int!
+  totalResponses: Int!
+  promoterPercentage: Float!
+  passivePercentage: Float!
+  detractorPercentage: Float!
+  period: String
+  responses: [NPSScore!]
+}
+
+# ─── Feature Tagging & Heatmap ───────────────────────────────────────────────
+
+"""A tagged UI feature element tracked for engagement."""
+type FeatureTag {
+  id: ID!
+  name: String!
+  selector: String!
+  url: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  clickCount: Int
+  uniqueUsers: Int
+}
+
+"""Detailed analytics for a feature tag."""
+type FeatureTagDetails {
+  featureTag: FeatureTag!
+  clicksByDay: [DailyCount!]
+  userSegments: [SegmentCount!]
+  topUsers: [User!]
+}
+
+"""A heatmap data set for a page URL."""
+type HeatMap {
+  id: ID!
+  url: String!
+  clicks: [HeatMapPoint!]!
+  capturedAt: DateTime!
+  totalClicks: Int!
+  uniqueUsers: Int!
+}
+
+"""A single click data point on a heatmap."""
+type HeatMapPoint {
+  x: Float!
+  y: Float!
+  count: Int!
+  element: String
+}
+
+# ─── Event Tracking Types ────────────────────────────────────────────────────
+
+"""Summary of event tracking configuration for the account."""
+type EventTracking {
+  customEvents: [CustomEvent!]!
+  autoEvents: [AutoEvent!]!
+  clickEvents: [ClickEvent!]!
+  pageEvents: [PageEvent!]!
+}
+
+"""A custom event defined and sent via the Userpilot SDK or API."""
+type CustomEvent {
+  id: ID!
+  name: String!
+  description: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  count: Int
+  uniqueUsers: Int
+}
+
+"""Detailed analytics for a custom event."""
+type CustomEventDetails {
+  event: CustomEvent!
+  countByDay: [DailyCount!]
+  propertiesSummary: JSON
+  topUsers: [User!]
+}
+
+"""An automatically captured event (e.g. SDK auto-capture)."""
+type AutoEvent {
+  id: ID!
+  name: String!
+  selector: String
+  url: String
+  capturedAt: DateTime!
+  count: Int
+  uniqueUsers: Int
+}
+
+"""An event triggered by a user clicking a specific element."""
+type ClickEvent {
+  id: ID!
+  name: String!
+  selector: String!
+  url: String
+  createdAt: DateTime!
+  count: Int
+  uniqueUsers: Int
+}
+
+"""An event triggered by a user visiting a specific page."""
+type PageEvent {
+  id: ID!
+  name: String!
+  url: String!
+  urlMatchType: String
+  createdAt: DateTime!
+  count: Int
+  uniqueUsers: Int
+}
+
+# ─── Segmentation Types ──────────────────────────────────────────────────────
+
+"""A named cohort of users defined by one or more conditions."""
+type Segment {
+  id: ID!
+  name: String!
+  description: String
+  conditions: [SegmentCondition!]!
+  operator: SegmentOperator!
+  userCount: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A single logical condition used to define a segment."""
+type SegmentCondition {
+  id: ID!
+  attribute: String!
+  comparator: ConditionComparator!
+  value: String
+  numericValue: Float
+  dateValue: DateTime
+  source: String
+}
+
+# ─── User Types ──────────────────────────────────────────────────────────────
+
+"""A tracked end-user of the product."""
+type User {
+  id: ID!
+  profile: UserProfile
+  attributes: UserAttributes
+  company: UserCompany
+  createdAt: DateTime!
+  lastSeenAt: DateTime
+  sessionCount: Int
+  experiencesViewed: [Experience!]
+  checklistProgress: [ChecklistProgress!]
+  npsScores: [NPSScore!]
+  surveyResponses: [SurveyResponse!]
+}
+
+"""Core identity fields for a user."""
+type UserProfile {
+  userId: ID!
+  email: String
+  name: String
+  firstName: String
+  lastName: String
+  avatarUrl: String
+  role: String
+  locale: String
+  timezone: String
+}
+
+"""Arbitrary key-value attributes associated with a user."""
+type UserAttributes {
+  userId: ID!
+  plan: String
+  signedUpAt: DateTime
+  lastActivityAt: DateTime
+  custom: JSON
+}
+
+"""The company membership record linking a user to a company."""
+type UserCompany {
+  userId: ID!
+  companyId: ID!
+  company: Company
+  role: String
+  joinedAt: DateTime
+}
+
+# ─── Company Types ───────────────────────────────────────────────────────────
+
+"""A company / account grouping multiple users."""
+type Company {
+  id: ID!
+  name: String!
+  attributes: CompanyAttributes
+  details: CompanyDetails
+  userCount: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Arbitrary key-value attributes associated with a company."""
+type CompanyAttributes {
+  companyId: ID!
+  plan: String
+  mrr: Float
+  industry: String
+  size: String
+  createdAt: DateTime
+  custom: JSON
+}
+
+"""Extended detail record for a company."""
+type CompanyDetails {
+  company: Company!
+  users: [User!]
+  experiencesViewed: [Experience!]
+  topEvents: [CustomEvent!]
+}
+
+# ─── Goal Types ──────────────────────────────────────────────────────────────
+
+"""A product goal tied to an experience or segment."""
+type Goal {
+  id: ID!
+  name: String!
+  description: String
+  eventName: String
+  url: String
+  conversionWindow: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  conversions: GoalConversion
+}
+
+"""Conversion metrics for a goal."""
+type GoalConversion {
+  goalId: ID!
+  totalUsers: Int!
+  convertedUsers: Int!
+  conversionRate: Float!
+  averageTimeToConvert: Float
+  period: String
+}
+
+# ─── Resource Center Types ───────────────────────────────────────────────────
+
+"""An in-app resource center widget containing help content."""
+type ResourceCenter implements ExperienceBase {
+  id: ID!
+  name: String!
+  type: ExperienceType!
+  status: ExperienceStatus!
+  title: String!
+  items: [ResourceCenterItem!]!
+  trigger: ExperienceTrigger
+  segment: Segment
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A single item inside a resource center."""
+type ResourceCenterItem {
+  id: ID!
+  order: Int!
+  itemType: ResourceCenterItemType!
+  title: String!
+  description: String
+  url: String
+  experienceId: ID
+  iconUrl: String
+}
+
+# ─── Administration Types ────────────────────────────────────────────────────
+
+"""An API key used to authenticate with the Userpilot API."""
+type APIKey {
+  id: ID!
+  key: String!
+  label: String
+  createdAt: DateTime!
+  lastUsedAt: DateTime
+  scopes: [String!]
+}
+
+"""An authentication token for a user session."""
+type Token {
+  token: String!
+  expiresAt: DateTime
+  userId: ID
+  scopes: [String!]
+}
+
+"""A webhook endpoint registered to receive Userpilot events."""
+type Webhook {
+  id: ID!
+  url: String!
+  method: WebhookMethod!
+  events: [String!]!
+  secret: String
+  active: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  lastTriggeredAt: DateTime
+  failureCount: Int
+}
+
+# ─── Utility Types ───────────────────────────────────────────────────────────
+
+"""A count value for a single day."""
+type DailyCount {
+  date: String!
+  count: Int!
+}
+
+"""Count of users or events within a segment."""
+type SegmentCount {
+  segment: Segment!
+  count: Int!
+}
+
+"""Paginated list of users."""
+type UserConnection {
+  nodes: [User!]!
+  totalCount: Int!
+  hasNextPage: Boolean!
+  offset: Int!
+  limit: Int!
+}
+
+"""Paginated list of experiences."""
+type ExperienceConnection {
+  nodes: [Experience!]!
+  totalCount: Int!
+  hasNextPage: Boolean!
+  offset: Int!
+  limit: Int!
+}
+
+# ─── Input Types ────────────────────────────────────────────────────────────
+
+"""Input for creating or updating a user profile."""
+input UserProfileInput {
+  userId: ID!
+  email: String
+  name: String
+  firstName: String
+  lastName: String
+  role: String
+  locale: String
+  companyId: ID
+  companyName: String
+  attributes: JSON
+}
+
+"""Input for creating or updating a company."""
+input CompanyInput {
+  companyId: ID!
+  name: String
+  attributes: JSON
+}
+
+"""Input for tracking a custom event."""
+input CustomEventInput {
+  userId: ID!
+  eventName: String!
+  properties: JSON
+  timestamp: DateTime
+}
+
+"""Input for creating or updating an experience."""
+input ExperienceInput {
+  name: String!
+  type: ExperienceType!
+  segmentId: ID
+  goalId: ID
+  trigger: ExperienceTriggerInput
+  metadata: JSON
+}
+
+"""Input for defining an experience trigger."""
+input ExperienceTriggerInput {
+  type: String!
+  url: String
+  urlMatchType: String
+  event: String
+  delay: Int
+  frequency: String
+}
+
+"""Input for creating a segment."""
+input SegmentInput {
+  name: String!
+  description: String
+  operator: SegmentOperator!
+  conditions: [SegmentConditionInput!]!
+}
+
+"""Input for a single segment condition."""
+input SegmentConditionInput {
+  attribute: String!
+  comparator: ConditionComparator!
+  value: String
+  numericValue: Float
+  source: String
+}
+
+"""Input for creating a goal."""
+input GoalInput {
+  name: String!
+  description: String
+  eventName: String
+  url: String
+  conversionWindow: Int
+}
+
+"""Input for registering a webhook."""
+input WebhookInput {
+  url: String!
+  method: WebhookMethod!
+  events: [String!]!
+  secret: String
+}
+
+# ─── Root Types ──────────────────────────────────────────────────────────────
+
+type Query {
+  """Fetch a single experience by ID."""
+  experience(id: ID!): ExperienceDetails
+
+  """List experiences with optional filters."""
+  experiences(
+    status: ExperienceStatus
+    type: ExperienceType
+    segmentId: ID
+    limit: Int
+    offset: Int
+  ): ExperienceConnection!
+
+  """Fetch a single user by their external user ID."""
+  user(id: ID!): User
+
+  """List users, optionally scoped to a segment."""
+  users(segmentId: ID, limit: Int, offset: Int): UserConnection!
+
+  """Fetch a company record."""
+  company(id: ID!): Company
+
+  """Fetch a segment by ID."""
+  segment(id: ID!): Segment
+
+  """List all segments."""
+  segments: [Segment!]!
+
+  """Fetch a survey by ID."""
+  survey(id: ID!): Survey
+
+  """List all surveys."""
+  surveys(status: ExperienceStatus): [Survey!]!
+
+  """Aggregate NPS data for a date range."""
+  nps(from: String, to: String): NPS!
+
+  """Fetch a checklist by ID."""
+  checklist(id: ID!): Checklist
+
+  """Fetch a goal by ID."""
+  goal(id: ID!): Goal
+
+  """List all goals."""
+  goals: [Goal!]!
+
+  """Flow conversion metrics for an experience."""
+  flowConversion(experienceId: ID!, from: String, to: String): FlowConversion
+
+  """Fetch a product tour by ID."""
+  productTour(id: ID!): ProductTour
+
+  """Fetch a resource center by ID."""
+  resourceCenter(id: ID!): ResourceCenter
+
+  """Fetch all feature tags."""
+  featureTags: [FeatureTag!]!
+
+  """Fetch feature tag details including analytics."""
+  featureTagDetails(id: ID!, from: String, to: String): FeatureTagDetails
+
+  """Fetch heatmap data for a URL."""
+  heatMap(url: String!, from: String, to: String): HeatMap
+
+  """List all custom events."""
+  customEvents: [CustomEvent!]!
+
+  """Fetch details for a custom event."""
+  customEventDetails(name: String!, from: String, to: String): CustomEventDetails
+
+  """Get full event tracking configuration."""
+  eventTracking: EventTracking!
+
+  """Fetch a webhook by ID."""
+  webhook(id: ID!): Webhook
+
+  """List all webhooks."""
+  webhooks: [Webhook!]!
+
+  """Fetch current API key metadata."""
+  apiKey: APIKey
+}
+
+type Mutation {
+  """Create or update a user identity record."""
+  identifyUser(input: UserProfileInput!): User!
+
+  """Create or update a company record."""
+  identifyCompany(input: CompanyInput!): Company!
+
+  """Track a custom event for a user."""
+  trackEvent(input: CustomEventInput!): Boolean!
+
+  """Create a new experience."""
+  createExperience(input: ExperienceInput!): Experience!
+
+  """Update an existing experience."""
+  updateExperience(id: ID!, input: ExperienceInput!): Experience!
+
+  """Publish a draft experience."""
+  publishExperience(id: ID!): Experience!
+
+  """Pause a live experience."""
+  pauseExperience(id: ID!): Experience!
+
+  """Archive an experience."""
+  archiveExperience(id: ID!): Experience!
+
+  """Create a user segment."""
+  createSegment(input: SegmentInput!): Segment!
+
+  """Update an existing segment."""
+  updateSegment(id: ID!, input: SegmentInput!): Segment!
+
+  """Delete a segment."""
+  deleteSegment(id: ID!): Boolean!
+
+  """Define a new product goal."""
+  createGoal(input: GoalInput!): Goal!
+
+  """Update an existing goal."""
+  updateGoal(id: ID!, input: GoalInput!): Goal!
+
+  """Delete a goal."""
+  deleteGoal(id: ID!): Boolean!
+
+  """Register a new webhook endpoint."""
+  createWebhook(input: WebhookInput!): Webhook!
+
+  """Update a webhook."""
+  updateWebhook(id: ID!, input: WebhookInput!): Webhook!
+
+  """Remove a webhook."""
+  deleteWebhook(id: ID!): Boolean!
+}

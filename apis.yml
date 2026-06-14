@@ -2,95 +2,93 @@ aid: userpilot
 url: https://raw.githubusercontent.com/api-evangelist/userpilot/refs/heads/main/apis.yml
 name: Userpilot
 kind: company
-description: Userpilot is a product growth platform for in-app onboarding, user engagement, surveys, and product analytics
-  — without code.
+description: Userpilot is a product growth platform for in-app onboarding, user engagement,
+  surveys, and product analytics — without code.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Product
-  - Onboarding
-  - In-App Guidance
-  - Analytics
-  - Customer Success
+- Product
+- Onboarding
+- In-App Guidance
+- Analytics
+- Customer Success
 created: '2026-05-08'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: userpilot:userpilot-realtime-api
-    name: Userpilot Realtime API (analytex)
-    description: Userpilot Realtime API for identifying users and companies and tracking events in real time. Hosted at analytex.userpilot.io
-      with EU at analytex-eu.userpilot.io.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.userpilot.com/api-references/overview
-    baseURL: https://analytex.userpilot.io/v1
-    tags:
-    - Product
-    - Analytics
-    - Tracking
-    - REST
-    properties:
-    - type: Documentation
-      url: https://docs.userpilot.com/api-references/overview
-    - type: OpenAPI
-      url: openapi/userpilot-analytex-openapi.json
-    - type: NaftikoCapability
-      url: capabilities/analytex-general.yaml
-    - type: NaftikoCapability
-      url: capabilities/analytex-real-time.yaml
-  - aid: userpilot:userpilot-analytics-export-api
-    name: Userpilot Analytics Export API (appex)
-    description: Userpilot Analytics Export API for triggering and retrieving export jobs and looking up resources (segments,
-      flows, surveys, banners, checklists, properties).
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.userpilot.com/api-references/overview
-    baseURL: https://appex.userpilot.io/api/v1
-    tags:
-    - Product
-    - Analytics
-    - Export
-    - REST
-    properties:
-    - type: Documentation
-      url: https://docs.userpilot.com/api-references/overview
-    - type: OpenAPI
-      url: openapi/userpilot-appex-openapi.json
-    - type: NaftikoCapability
-      url: capabilities/appex.yaml
-  - aid: userpilot:userpilot-api
-    name: Userpilot API
-    description: Aggregate Userpilot API spec covering identification, tracking, bulk operations, imports/exports, and lookups.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.userpilot.com/api-references/overview
-    baseURL: https://analytix.userpilot.io/v1
-    tags:
-    - Product
-    - Analytics
-    - REST
-    properties:
-    - type: Documentation
-      url: https://docs.userpilot.com/api-references/overview
-    - type: OpenAPI
-      url: openapi/userpilot-openapi.json
-common:
-  - type: GitHubOrganization
-    url: https://github.com/Userpilot
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/teamuserpilot
-  - type: Website
-    url: https://userpilot.com/
+- aid: userpilot:userpilot-realtime-api
+  name: Userpilot Realtime API (analytex)
+  description: Userpilot Realtime API for identifying users and companies and tracking
+    events in real time. Hosted at analytex.userpilot.io with EU at analytex-eu.userpilot.io.
+  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.userpilot.com/api-references/overview
+  baseURL: https://analytex.userpilot.io/v1
+  tags:
+  - Product
+  - Analytics
+  - Tracking
+  - REST
+  properties:
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
-  - type: Plans
-    url: plans/userpilot-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/userpilot-rate-limits.yml
-  - type: FinOps
-    url: finops/userpilot-finops.yml
-  - type: Integrations
-    url: https://userpilot.com/integrations/
-  - type: LLMsTxt
-    url: https://docs.userpilot.com/llms.txt
+  - type: OpenAPI
+    url: openapi/userpilot-analytex-openapi.json
+  - url: graphql/userpilot-graphql.md
+    type: GraphQL
+- aid: userpilot:userpilot-analytics-export-api
+  name: Userpilot Analytics Export API (appex)
+  description: Userpilot Analytics Export API for triggering and retrieving export
+    jobs and looking up resources (segments, flows, surveys, banners, checklists,
+    properties).
+  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.userpilot.com/api-references/overview
+  baseURL: https://appex.userpilot.io/api/v1
+  tags:
+  - Product
+  - Analytics
+  - Export
+  - REST
+  properties:
+  - type: Documentation
+    url: https://docs.userpilot.com/api-references/overview
+  - type: OpenAPI
+    url: openapi/userpilot-appex-openapi.json
+- aid: userpilot:userpilot-api
+  name: Userpilot API
+  description: Aggregate Userpilot API spec covering identification, tracking, bulk
+    operations, imports/exports, and lookups.
+  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.userpilot.com/api-references/overview
+  baseURL: https://analytix.userpilot.io/v1
+  tags:
+  - Product
+  - Analytics
+  - REST
+  properties:
+  - type: Documentation
+    url: https://docs.userpilot.com/api-references/overview
+  - type: OpenAPI
+    url: openapi/userpilot-openapi.json
+common:
+- type: GitHubOrganization
+  url: https://github.com/Userpilot
+- type: LinkedIn
+  url: https://www.linkedin.com/company/teamuserpilot
+- type: Website
+  url: https://userpilot.com/
+- type: Documentation
+  url: https://docs.userpilot.com/api-references/overview
+- type: Plans
+  url: plans/userpilot-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/userpilot-rate-limits.yml
+- type: FinOps
+  url: finops/userpilot-finops.yml
+- type: Integrations
+  url: https://userpilot.com/integrations/
+- type: LLMsTxt
+  url: https://docs.userpilot.com/llms.txt
 integrations:
-  - name: Bulk Export/Import Seamless data transfer, hassle-free
+- name: Bulk Export/Import Seamless data transfer, hassle-free
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
