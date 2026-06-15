@@ -1,0 +1,293 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Userpilot API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Show Job by Job ID",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/jobs/:job_id",
+        "headers": [
+          {
+            "name": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "params": [
+          {
+            "name": "job_id",
+            "value": "<uuid>",
+            "type": "path",
+            "description": "(Required) Unique identifier for the export job"
+          }
+        ]
+      },
+      "docs": "Show Job by Job ID"
+    },
+    {
+      "info": {
+        "name": "Show Jobs",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/jobs/",
+        "headers": [
+          {
+            "name": "Accept",
+            "value": "application/json"
+          }
+        ]
+      },
+      "docs": "Show Jobs"
+    },
+    {
+      "info": {
+        "name": "Get user properties",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/user_properties",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of user properties available for export."
+    },
+    {
+      "info": {
+        "name": "Get company properties",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/company_properties",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of company properties available for export."
+    },
+    {
+      "info": {
+        "name": "Get segments",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/segments",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a paginated list of segments available for export."
+    },
+    {
+      "info": {
+        "name": "Get features & events",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/features_events",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of features and events available for export."
+    },
+    {
+      "info": {
+        "name": "Get trackable events' properties/attributes (paginated)",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/events_properties",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ],
+        "params": [
+          {
+            "name": "after_cursor",
+            "value": "",
+            "type": "query",
+            "description": "Cursor for pagination. Use the value from the previous response's metadata.cursor.after."
+          }
+        ]
+      },
+      "docs": "Retrieve a paginated list of trackable event properties and attributes. Supports cursor-based pagination."
+    },
+    {
+      "info": {
+        "name": "Get flows (experiences)",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/flows",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of flows (experiences) available for export."
+    },
+    {
+      "info": {
+        "name": "Get banners",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/banners",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of banners available for export."
+    },
+    {
+      "info": {
+        "name": "Get embeds",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/embeds",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of embeds (banners and cards) available for export."
+    },
+    {
+      "info": {
+        "name": "Get spotlights",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/spotlights",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of spotlights available for export."
+    },
+    {
+      "info": {
+        "name": "Get surveys (with modules)",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/surveys",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of surveys (with modules) available for export."
+    },
+    {
+      "info": {
+        "name": "Get resource center modules",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/resource_center_modules",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of resource center modules available for export."
+    },
+    {
+      "info": {
+        "name": "Get checklists (with tasks)",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports/lookups/checklists",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          }
+        ]
+      },
+      "docs": "Retrieve a list of checklists (with tasks) available for export."
+    },
+    {
+      "info": {
+        "name": "Trigger an Export Job",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://appex.userpilot.io/api/v1/analytics/exports",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Token abcd1234efgh5678"
+          },
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "name": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Trigger an Export Job"
+    }
+  ],
+  "bundled": true
+}

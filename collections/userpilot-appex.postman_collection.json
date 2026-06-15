@@ -1,0 +1,1641 @@
+{
+  "item": [
+    {
+      "id": "becf94ea-1b4b-4c5f-868c-3563a546ac21",
+      "name": "Show Job by Job ID",
+      "request": {
+        "name": "Show Job by Job ID",
+        "description": {},
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "jobs",
+            ":job_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "job_id",
+              "description": "(Required) (Required) Unique identifier for the export job"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "5d0fb261-fa2f-4948-a8f0-84f607c1db34",
+          "name": "OK - Export job details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "jobs",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) (Required) Unique identifier for the export job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"app_token\": \"string\",\n  \"completed_chunks\": [\n    \"string\",\n    \"string\"\n  ],\n  \"current_chunk\": \"string\",\n  \"end_time\": \"string\",\n  \"job_id\": \"string\",\n  \"presigned_urls\": [\n    {\n      \"filename\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"filename\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"progress\": \"string\",\n  \"start_time\": \"string\",\n  \"status\": \"string\",\n  \"all_chunks\": [\n    \"string\",\n    \"string\"\n  ],\n  \"type\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "96123b01-be86-4c76-86e0-568ffc20fdd2",
+          "name": "Unauthorized - Invalid API key",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "jobs",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) (Required) Unique identifier for the export job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errors\": [\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "cbf73bdd-7dc1-4ba9-968f-289dd7fad3d0",
+          "name": "Not Found - Export job not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "jobs",
+                ":job_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) (Required) Unique identifier for the export job"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errors\": [\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2b5c9137-fc9e-4c5c-a72a-3fea9efb603d",
+      "name": "Show Jobs",
+      "request": {
+        "name": "Show Jobs",
+        "description": {},
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "jobs",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "5d13ebf4-de79-4981-a627-85aca0e3f07c",
+          "name": "OK - List of export jobs",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "jobs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"elapsed_time\": \"string\",\n    \"elapsed_time_seconds\": \"string\",\n    \"end_time\": \"string\",\n    \"job_id\": \"string\",\n    \"progress\": \"string\",\n    \"start_time\": \"string\",\n    \"status\": \"string\"\n  },\n  {\n    \"elapsed_time\": \"string\",\n    \"elapsed_time_seconds\": \"string\",\n    \"end_time\": \"string\",\n    \"job_id\": \"string\",\n    \"progress\": \"string\",\n    \"start_time\": \"string\",\n    \"status\": \"string\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "00c23798-73bb-4e31-8e42-080ef3e4d727",
+          "name": "Unauthorized - Invalid API key",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "jobs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errors\": [\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d0936981-98fa-4ed2-802c-1212a9ec4f00",
+      "name": "Get user properties",
+      "request": {
+        "name": "Get user properties",
+        "description": {
+          "content": "Retrieve a list of user properties available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "user_properties"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "e8de500a-a356-4f3a-98d6-7a9dcda65f8f",
+          "name": "A list of user properties.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "user_properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 1,\n    \"type\": \"user_property\",\n    \"key\": \"email\",\n    \"display_name\": \"Email\",\n    \"data_type\": \"string\",\n    \"is_auto_property\": false\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "16d55aeb-7237-4ef6-a4f3-f5f585fad7cf",
+      "name": "Get company properties",
+      "request": {
+        "name": "Get company properties",
+        "description": {
+          "content": "Retrieve a list of company properties available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "company_properties"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "2ec6252b-7cd3-4bc6-a6a7-75fd02be8b85",
+          "name": "A list of company properties.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "company_properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 10,\n    \"type\": \"company_property\",\n    \"key\": \"company_name\",\n    \"display_name\": \"Company Name\",\n    \"data_type\": \"string\",\n    \"is_auto_property\": false\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bef98587-0cf1-4b29-9ee6-0744c571979a",
+      "name": "Get segments",
+      "request": {
+        "name": "Get segments",
+        "description": {
+          "content": "Retrieve a paginated list of segments available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "segments"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "26104deb-4192-4c82-9b0f-6b0f429fab81",
+          "name": "A paginated list of segments.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "segments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": [\n    {\n      \"id\": 101,\n      \"title\": \"Active Users\",\n      \"usage\": \"all\",\n      \"category\": \"user_id\",\n      \"is_hidden\": false,\n      \"is_protected\": false,\n      \"status\": \"published\"\n    }\n  ],\n  \"metadata\": {\n    \"cursor\": {\n      \"after\": \"...\",\n      \"before\": null\n    },\n    \"limit\": 50,\n    \"total_count\": 1\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "14cb721d-968d-4d57-8939-21c3996abd27",
+      "name": "Get features & events",
+      "request": {
+        "name": "Get features & events",
+        "description": {
+          "content": "Retrieve a list of features and events available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "features_events"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "cdb7c1e5-e62f-449b-bff5-f6ae7ff4f867",
+          "name": "A list of features and events.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "features_events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"display_name\": \"Feature A\",\n    \"key\": \"feature_a\",\n    \"data_type\": \"string\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7e09f603-25ef-4252-a3be-58e85101079c",
+      "name": "Get trackable events' properties/attributes (paginated)",
+      "request": {
+        "name": "Get trackable events' properties/attributes (paginated)",
+        "description": {
+          "content": "Retrieve a paginated list of trackable event properties and attributes. Supports cursor-based pagination.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "events_properties"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "after_cursor",
+              "value": "<string>",
+              "description": "Cursor for pagination. Use the value from the previous response's metadata.cursor.after."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "0d5db5ce-f296-409a-8ff1-2d49e029df5c",
+          "name": "A paginated list of event properties.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "events_properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "after_cursor",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": [\n    {\n      \"id\": 12,\n      \"key\": \"url\",\n      \"display_name\": \"URL\",\n      \"is_auto_property\": true,\n      \"is_mobile_auto_property\": false,\n      \"data_type\": \"string\",\n      \"category\": \"css_attribute\",\n      \"description\": \"Page URL\",\n      \"is_archived\": false,\n      \"event\": {\n        \"id\": 33,\n        \"display_name\": \"page_view\"\n      },\n      \"inserted_at\": \"2025-01-01T00:00:00Z\",\n      \"last_seen\": \"2025-01-10T00:00:00Z\"\n    }\n  ],\n  \"metadata\": {\n    \"cursor\": {\n      \"after\": \"...\",\n      \"before\": null\n    },\n    \"limit\": 50,\n    \"total_count\": 53\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d5c20879-78ea-450d-a5df-e6cb4565451a",
+      "name": "Get flows (experiences)",
+      "request": {
+        "name": "Get flows (experiences)",
+        "description": {
+          "content": "Retrieve a list of flows (experiences) available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "flows"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "2fac7e37-b5da-443c-ab71-44bab975b617",
+          "name": "A list of flows (experiences).",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "flows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 123,\n    \"title\": \"Onboarding Flow\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c812ae9c-287a-48ba-90be-793139180989",
+      "name": "Get banners",
+      "request": {
+        "name": "Get banners",
+        "description": {
+          "content": "Retrieve a list of banners available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "banners"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "c6c7c819-f890-42d3-850d-a89e9ec0ccce",
+          "name": "A list of banners.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "banners"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 77,\n    \"title\": \"Promo Banner\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bc51cf54-64e7-443e-9bd7-b61828b83158",
+      "name": "Get embeds",
+      "request": {
+        "name": "Get embeds",
+        "description": {
+          "content": "Retrieve a list of embeds (banners and cards) available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "embeds"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3cca1377-c23b-4f66-b6fb-05437fcd0db5",
+          "name": "A list of embeds (banners and cards).",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "embeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 77,\n    \"title\": \"Promo Banner\",\n    \"type\": \"banner\"\n  },\n  {\n    \"id\": 92,\n    \"title\": \"Feature Card\",\n    \"type\": \"card\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3ba623cf-898f-412a-8406-cc2138250133",
+      "name": "Get spotlights",
+      "request": {
+        "name": "Get spotlights",
+        "description": {
+          "content": "Retrieve a list of spotlights available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "spotlights"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "bd992660-a34c-4d2e-b18e-ae70453a9576",
+          "name": "A list of spotlights.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "spotlights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 88,\n    \"title\": \"New Feature Spotlight\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "fd773442-6ede-43de-aab9-fcd0cecf2e84",
+      "name": "Get surveys (with modules)",
+      "request": {
+        "name": "Get surveys (with modules)",
+        "description": {
+          "content": "Retrieve a list of surveys (with modules) available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "surveys"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "055433ae-8f80-4a72-abfe-07faf5af21d3",
+          "name": "A list of surveys (with modules).",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "surveys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"id\": 45,\n    \"title\": \"CSAT Survey\",\n    \"platform\": \"web\",\n    \"modules\": [\n      {\n        \"id\": 1,\n        \"order\": 1,\n        \"type\": \"open_text\",\n        \"question\": \"How was it?\"\n      }\n    ]\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4cb6a1eb-eb3b-4c66-8b0e-d4a61982ecb8",
+      "name": "Get resource center modules",
+      "request": {
+        "name": "Get resource center modules",
+        "description": {
+          "content": "Retrieve a list of resource center modules available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "resource_center_modules"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "7e4e9de9-fa54-4ab6-8b11-3dd08c064d7b",
+          "name": "A list of resource center modules.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "resource_center_modules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"display_name\": \"Resource Center Module A\",\n    \"key\": \"resource_center_module_a\",\n    \"data_type\": \"string\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5ad9c160-2ffd-4753-91f0-18cb44410f99",
+      "name": "Get checklists (with tasks)",
+      "request": {
+        "name": "Get checklists (with tasks)",
+        "description": {
+          "content": "Retrieve a list of checklists (with tasks) available for export.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports",
+            "lookups",
+            "checklists"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "2d458306-fdc3-474a-b9af-5b8362078ab8",
+          "name": "A list of checklists (with tasks).",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports",
+                "lookups",
+                "checklists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n  {\n    \"display_name\": \"Checklist A\",\n    \"key\": \"checklist_a\",\n    \"data_type\": \"string\"\n  }\n]",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d63dd26d-8ec7-470c-8457-928da3c9a7ba",
+      "name": "Trigger an Export Job",
+      "request": {
+        "name": "Trigger an Export Job",
+        "description": {},
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "analytics",
+            "exports"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"company_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"format\": \"<string>\",\n  \"exclusions\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "67402491-ec8c-4b88-9873-48ec922dc5c1",
+          "name": "Created - Export job successfully created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The content type of the request body. Must be `application/json`.",
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "disabled": false,
+                "description": "The content type of the response body. Must be `application/json`.",
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"company_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"format\": \"<string>\",\n  \"exclusions\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"environment_app_token\": \"NX-RE213S2\",\n  \"environment_name\": \"production\",\n  \"job_id\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"links\": \"string\",\n  \"start_time\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7c384ad4-e7c6-461a-a846-15406b642fc4",
+          "name": "Unauthorized - Invalid API key or insufficient permissions",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The content type of the request body. Must be `application/json`.",
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "disabled": false,
+                "description": "The content type of the response body. Must be `application/json`.",
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"company_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"format\": \"<string>\",\n  \"exclusions\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errors\": [\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ee5c8dad-fda2-40be-9c58-44bf7b8d6e36",
+          "name": "Conflict - Export job already in progress",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "analytics",
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The content type of the request body. Must be `application/json`.",
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "disabled": false,
+                "description": "The content type of the response body. Must be `application/json`.",
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                "key": "Authorization",
+                "value": "Token abcd1234efgh5678"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"user_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"company_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"segment_id\": \"<string>\",\n  \"format\": \"<string>\",\n  \"exclusions\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"errors\": [\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://appex.userpilot.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ed136290-eb76-4398-8929-698e3cb646e4",
+    "name": "Userpilot API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nAuthentication:\n All endpoints that require authentication expect an HTTP header in the following format:\n\n Authorization: Token {{API_KEY}}\n\nExample (cURL):\n curl -X GET 'https://appex.userpilot.io/v1/identify' \\\n   -H 'Authorization: Token abcd1234efgh5678' \\\n   -H 'Content-Type: application/json'\n\nContact Support:\n Email: support@userpilot.com\n\nContact Support:\n Name: Userpilot\n Email: support@userpilot.com",
+      "type": "text/plain"
+    }
+  }
+}
