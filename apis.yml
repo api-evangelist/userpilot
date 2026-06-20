@@ -4,7 +4,7 @@ name: Userpilot
 kind: company
 description: Userpilot is a product growth platform for in-app onboarding, user engagement,
   surveys, and product analytics — without code.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Product
 - Onboarding
@@ -19,7 +19,7 @@ apis:
   name: Userpilot Realtime API (analytex)
   description: Userpilot Realtime API for identifying users and companies and tracking
     events in real time. Hosted at analytex.userpilot.io with EU at analytex-eu.userpilot.io.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.userpilot.com/api-references/overview
   baseURL: https://analytex.userpilot.io/v1
   tags:
@@ -39,7 +39,7 @@ apis:
   description: Userpilot Analytics Export API for triggering and retrieving export
     jobs and looking up resources (segments, flows, surveys, banners, checklists,
     properties).
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.userpilot.com/api-references/overview
   baseURL: https://appex.userpilot.io/api/v1
   tags:
@@ -56,7 +56,7 @@ apis:
   name: Userpilot API
   description: Aggregate Userpilot API spec covering identification, tracking, bulk
     operations, imports/exports, and lookups.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.userpilot.com/api-references/overview
   baseURL: https://analytix.userpilot.io/v1
   tags:
