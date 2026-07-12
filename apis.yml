@@ -69,6 +69,10 @@ apis:
   - type: OpenAPI
     url: openapi/userpilot-openapi.json
 common:
+- type: TrustCenter
+  url: security/userpilot-trust-center.yml
+- type: DomainSecurity
+  url: security/userpilot-domain-security.yml
 - type: GitHubOrganization
   url: https://github.com/Userpilot
 - type: LinkedIn
@@ -87,6 +91,8 @@ common:
   url: https://userpilot.com/integrations/
 - type: LlmsText
   url: https://docs.userpilot.com/llms.txt
+- url: https://userpilot.com/blog/
+  type: Blog
 integrations:
 - name: Bulk Export/Import Seamless data transfer, hassle-free
 maintainers:
