@@ -69,6 +69,8 @@ apis:
   - type: OpenAPI
     url: openapi/userpilot-openapi.json
 common:
+- type: AgenticAccess
+  url: agentic-access/userpilot-agentic-access.yml
 - type: TrustCenter
   url: security/userpilot-trust-center.yml
 - type: DomainSecurity
