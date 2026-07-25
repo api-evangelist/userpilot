@@ -1,0 +1,695 @@
+openapi: 3.0.0
+info:
+  title: Userpilot Analytics API
+  version: 1.0.0
+  termsOfService: https://userpilot.io/terms-of-service/
+  description: "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com"
+  contact:
+    name: Userpilot
+    url: https://userpilot.io
+    email: support@userpilot.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+- url: https://{environment}.userpilot.io
+  description: Analytical data endpoint for Userpilot API. Choose the appropriate environment based on your data residency requirements and account type.
+  variables:
+    environment:
+      description: The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment).
+      enum:
+      - analytex
+      - analytex-eu
+      default: analytex
+tags:
+- name: Analytics
+paths:
+  /api/v1/analytics/exports/jobs/{job_id}:
+    parameters:
+    - name: job_id
+      in: path
+      required: true
+      description: (Required) Unique identifier for the export job
+      example: <uuid>
+      schema:
+        type: string
+    get:
+      summary: Show Job by Job ID
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+      responses:
+        '200':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: OK - Export job details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  app_token:
+                    type: string
+                  completed_chunks:
+                    type: array
+                    items:
+                      type: string
+                  current_chunk:
+                    type: string
+                  end_time:
+                    type: string
+                  job_id:
+                    type: string
+                  presigned_urls:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        filename:
+                          type: string
+                        url:
+                          type: string
+                  progress:
+                    type: string
+                  start_time:
+                    type: string
+                  status:
+                    type: string
+                  all_chunks:
+                    type: array
+                    items:
+                      type: string
+                  type:
+                    type: string
+        '401':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized - Invalid API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        details:
+                          type: string
+                        error:
+                          type: string
+                        error_code:
+                          type: string
+                        message:
+                          type: string
+        '404':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found - Export job not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        details:
+                          type: string
+                        error:
+                          type: string
+                        error_code:
+                          type: string
+                        message:
+                          type: string
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/jobs/:
+    parameters: []
+    get:
+      summary: Show Jobs
+      parameters:
+      - name: Accept
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+      responses:
+        '200':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: OK - List of export jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    elapsed_time:
+                      type: string
+                    elapsed_time_seconds:
+                      type: string
+                    end_time:
+                      type: string
+                    job_id:
+                      type: string
+                    progress:
+                      type: string
+                    start_time:
+                      type: string
+                    status:
+                      type: string
+        '401':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized - Invalid API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        details:
+                          type: string
+                        error:
+                          type: string
+                        error_code:
+                          type: string
+                        message:
+                          type: string
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/user_properties:
+    get:
+      summary: Get user properties
+      description: Retrieve a list of user properties available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A list of user properties.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              example:
+              - id: 1
+                type: user_property
+                key: email
+                display_name: Email
+                data_type: string
+                is_auto_property: false
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/company_properties:
+    get:
+      summary: Get company properties
+      description: Retrieve a list of company properties available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A list of company properties.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              example:
+              - id: 10
+                type: company_property
+                key: company_name
+                display_name: Company Name
+                data_type: string
+                is_auto_property: false
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/segments:
+    get:
+      summary: Get segments
+      description: Retrieve a paginated list of segments available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A paginated list of segments.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  metadata:
+                    type: object
+                    properties:
+                      cursor:
+                        type: object
+                        properties:
+                          after:
+                            type: string
+                            nullable: true
+                          before:
+                            type: string
+                            nullable: true
+                      limit:
+                        type: integer
+                      total_count:
+                        type: integer
+              example:
+                data:
+                - id: 101
+                  title: Active Users
+                  usage: all
+                  category: user_id
+                  is_hidden: false
+                  is_protected: false
+                  status: published
+                metadata:
+                  cursor:
+                    after: '...'
+                    before: null
+                  limit: 50
+                  total_count: 1
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/features_events:
+    get:
+      summary: Get features & events
+      description: Retrieve a list of features and events available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A list of features and events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              example:
+              - display_name: Feature A
+                key: feature_a
+                data_type: string
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/events_properties:
+    get:
+      summary: Get trackable events' properties/attributes (paginated)
+      description: Retrieve a paginated list of trackable event properties and attributes. Supports cursor-based pagination.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      - name: after_cursor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Cursor for pagination. Use the value from the previous response's metadata.cursor.after.
+      responses:
+        '200':
+          description: A paginated list of event properties.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  metadata:
+                    type: object
+                    properties:
+                      cursor:
+                        type: object
+                        properties:
+                          after:
+                            type: string
+                            nullable: true
+                          before:
+                            type: string
+                            nullable: true
+                      limit:
+                        type: integer
+                      total_count:
+                        type: integer
+              example:
+                data:
+                - id: 12
+                  key: url
+                  display_name: URL
+                  is_auto_property: true
+                  is_mobile_auto_property: false
+                  data_type: string
+                  category: css_attribute
+                  description: Page URL
+                  is_archived: false
+                  event:
+                    id: 33
+                    display_name: page_view
+                  inserted_at: '2025-01-01T00:00:00Z'
+                  last_seen: '2025-01-10T00:00:00Z'
+                metadata:
+                  cursor:
+                    after: '...'
+                    before: null
+                  limit: 50
+                  total_count: 53
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/flows:
+    get:
+      summary: Get flows (experiences)
+      description: Retrieve a list of flows (experiences) available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A list of flows (experiences).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              example:
+              - id: 123
+                title: Onboarding Flow
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/banners:
+    get:
+      summary: Get banners
+      description: Retrieve a list of banners available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A list of banners.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              example:
+              - id: 77
+                title: Promo Banner
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/embeds:
+    get:
+      summary: Get embeds
+      description: Retrieve a list of embeds (banners and cards) available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A list of embeds (banners and cards).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              example:
+              - id: 77
+                title: Promo Banner
+                type: banner
+              - id: 92
+                title: Feature Card
+                type: card
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/spotlights:
+    get:
+      summary: Get spotlights
+      description: Retrieve a list of spotlights available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A list of spotlights.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              example:
+              - id: 88
+                title: New Feature Spotlight
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/surveys:
+    get:
+      summary: Get surveys (with modules)
+      description: Retrieve a list of surveys (with modules) available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A list of surveys (with modules).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              example:
+              - id: 45
+                title: CSAT Survey
+                platform: web
+                modules:
+                - id: 1
+                  order: 1
+                  type: open_text
+                  question: How was it?
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/resource_center_modules:
+    get:
+      summary: Get resource center modules
+      description: Retrieve a list of resource center modules available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A list of resource center modules.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              example:
+              - display_name: Resource Center Module A
+                key: resource_center_module_a
+                data_type: string
+      tags:
+      - Analytics
+  /api/v1/analytics/exports/lookups/checklists:
+    get:
+      summary: Get checklists (with tasks)
+      description: Retrieve a list of checklists (with tasks) available for export.
+      parameters:
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: A list of checklists (with tasks).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+              example:
+              - display_name: Checklist A
+                key: checklist_a
+                data_type: string
+      tags:
+      - Analytics
+  /api/v1/analytics/exports:
+    parameters:
+    - $ref: '#/components/parameters/AuthorizationHeader'
+    post:
+      summary: Trigger an Export Job
+      parameters:
+      - name: Content-Type
+        description: The content type of the request body. Must be `application/json`.
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: Accept
+        description: The content type of the response body. Must be `application/json`.
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+      responses:
+        '201':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Created - Export job successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  environment_app_token:
+                    type: string
+                    description: The app token of the environment.
+                    example: NX-RE213S2
+                  environment_name:
+                    type: string
+                    description: The name of the environment.
+                    example: production
+                  job_id:
+                    type: string
+                    description: The ID of the export job.
+                    example: 123e4567-e89b-12d3-a456-426614174000
+                  links:
+                    type: string
+                    description: The links to the export job.
+                  start_time:
+                    type: string
+                    description: The start time of the export job.
+        '401':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized - Invalid API key or insufficient permissions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        details:
+                          type: string
+                        error:
+                          type: string
+                        error_code:
+                          type: string
+                        message:
+                          type: string
+        '409':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Conflict - Export job already in progress
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        details:
+                          type: string
+                        error:
+                          type: string
+                        error_code:
+                          type: string
+                        message:
+                          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                from:
+                  type: string
+                to:
+                  type: string
+                emails:
+                  type: array
+                  items:
+                    type: string
+                event_type:
+                  type: array
+                  items:
+                    type: string
+                user_id:
+                  type: array
+                  items:
+                    type: string
+                company_id:
+                  type: array
+                  items:
+                    type: string
+                segment_id:
+                  type: string
+                format:
+                  type: string
+                  enum:
+                  - avro
+                  - csv
+                  - ndjson
+                  - parquet
+                exclusions:
+                  type: string
+      tags:
+      - Analytics
+components:
+  parameters:
+    AuthorizationHeader:
+      name: Authorization
+      in: header
+      required: true
+      description: 'API authentication token in the format: `Token {{API_KEY}}`. Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).'
+      schema:
+        type: string
+      example: Token abcd1234efgh5678

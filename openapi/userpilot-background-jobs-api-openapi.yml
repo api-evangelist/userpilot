@@ -1,0 +1,249 @@
+openapi: 3.0.0
+info:
+  title: Userpilot Analytics Background Jobs API
+  version: 1.0.0
+  termsOfService: https://userpilot.io/terms-of-service/
+  description: "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com"
+  contact:
+    name: Userpilot
+    url: https://userpilot.io
+    email: support@userpilot.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+- url: https://{environment}.userpilot.io
+  description: Analytical data endpoint for Userpilot API. Choose the appropriate environment based on your data residency requirements and account type.
+  variables:
+    environment:
+      description: The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment).
+      enum:
+      - analytex
+      - analytex-eu
+      default: analytex
+tags:
+- name: Background Jobs
+paths:
+  /v1/background_jobs:
+    parameters: []
+    get:
+      summary: List jobs
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          headers:
+            Date:
+              schema:
+                type: string
+              example: Mon, 19 May 2025 07:27:14 GMT
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '1660'
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            cache-control:
+              schema:
+                type: string
+              example: max-age=0, private, must-revalidate
+            server:
+              schema:
+                type: string
+              example: Cowboy
+            x-request-id:
+              schema:
+                type: string
+              example: GEDc_N9Cd5nU5pgACtJD
+          description: OK - List jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    elapsed_time:
+                      type: integer
+                    end_time:
+                      type: string
+                      format: style
+                    file_size:
+                      type: integer
+                    filename:
+                      type: string
+                    job_id:
+                      type: string
+                      format: uri
+                    links:
+                      type: string
+                      format: style
+                    start_time:
+                      type: string
+                    status:
+                      type: string
+                      enum:
+                      - queued
+                      - validating
+                      - processing
+                      - pending_refresh
+                      - completed
+                      - failed
+                    total_rows:
+                      type: integer
+                    type:
+                      type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      tags:
+      - Background Jobs
+  /v1/background_jobs/{{job_id}}:
+    parameters: []
+    get:
+      summary: Check job status
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        example: bulk:jobs:NX-ac54070e:c6f91301-54c1-4df7-a077-b34715c38875
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          headers:
+            Date:
+              schema:
+                type: string
+              example: Mon, 19 May 2025 07:25:29 GMT
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '436'
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            cache-control:
+              schema:
+                type: string
+              example: max-age=0, private, must-revalidate
+            server:
+              schema:
+                type: string
+              example: Cowboy
+            x-request-id:
+              schema:
+                type: string
+              example: GEDc5I83W1RogTAAD21i
+          description: OK - Check job status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  completed_rows:
+                    type: integer
+                  elapsed_time:
+                    type: integer
+                  end_time:
+                    type: string
+                    format: style
+                  file_size:
+                    type: integer
+                  filename:
+                    type: string
+                  job_id:
+                    type: string
+                    format: uri
+                  links:
+                    type: string
+                    format: style
+                  start_time:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - queued
+                    - validating
+                    - processing
+                    - pending_refresh
+                    - completed
+                    - failed
+                  total_rows:
+                    type: integer
+                  type:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      user_id:
+                        type: string
+                      company_id:
+                        type: string
+                      metadata:
+                        type: object
+                        properties:
+                          custom_user_property:
+                            type: string
+                            description: 'example: Name, Job title, etc.'
+      tags:
+      - Background Jobs
+components:
+  parameters:
+    AuthorizationHeader:
+      name: Authorization
+      in: header
+      required: true
+      description: 'API authentication token in the format: `Token {{API_KEY}}`
+
+        Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).'
+      schema:
+        type: string
+        default: Token ABC_1234_EFGH_5678
+      example: Token ABC_1234_EFGH_5678

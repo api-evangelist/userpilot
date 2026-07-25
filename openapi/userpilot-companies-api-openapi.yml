@@ -1,0 +1,279 @@
+openapi: 3.0.0
+info:
+  title: Userpilot Analytics Companies API
+  version: 1.0.0
+  termsOfService: https://userpilot.io/terms-of-service/
+  description: "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com"
+  contact:
+    name: Userpilot
+    url: https://userpilot.io
+    email: support@userpilot.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+- url: https://{environment}.userpilot.io
+  description: Analytical data endpoint for Userpilot API. Choose the appropriate environment based on your data residency requirements and account type.
+  variables:
+    environment:
+      description: The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment).
+      enum:
+      - analytex
+      - analytex-eu
+      default: analytex
+tags:
+- name: Companies
+paths:
+  /v1/companies/identify:
+    parameters: []
+    post:
+      summary: Identify Company
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+          default: application/json
+      - name: Accept
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+          default: application/json
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '202':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Accepted - Company identification successful
+        '400':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request - Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        details:
+                          type: string
+                        error:
+                          type: string
+                        error_code:
+                          type: string
+                          format: color
+                        message:
+                          type: string
+        '401':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized - Invalid API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        details:
+                          type: string
+                        error:
+                          type: string
+                        error_code:
+                          type: string
+                          format: color
+                        message:
+                          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              company_id: comp_techstartup_2024
+              metadata:
+                name: Acme Corporation
+                industry: Technology
+                size: 100-500
+                location: San Francisco, CA
+                website: https://acme.com
+                subscription_tier: Enterprise
+                annual_revenue: $10M-$50M
+                founded_year: '2020'
+            schema:
+              type: object
+              required:
+              - company_id
+              properties:
+                company_id:
+                  type: string
+                  description: The unique identifier for the company. This is the ID that Userpilot uses to identify the company.
+                metadata:
+                  type: object
+                  description: Optional company metadata. You can add, remove, or modify any properties as needed for your use case.
+                  additionalProperties: true
+                  properties:
+                    custom_company_property:
+                      type: string
+                      description: 'example: Company name, Industry, etc.'
+      tags:
+      - Companies
+  /v1/companies/bulk_identify:
+    parameters: []
+    post:
+      summary: Companies - Bulk Identify and Update
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+          default: application/json
+      - name: Accept
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+          default: application/json
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '202':
+          headers:
+            Date:
+              schema:
+                type: string
+              example: Mon, 19 May 2025 07:29:12 GMT
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '379'
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            cache-control:
+              schema:
+                type: string
+              example: max-age=0, private, must-revalidate
+            server:
+              schema:
+                type: string
+              example: Cowboy
+            x-request-id:
+              schema:
+                type: string
+              example: GEDdGIKmRewi6ZIAEYcB
+          description: Accepted - Bulk identify
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  end_time:
+                    nullable: true
+                  file_size:
+                    type: integer
+                  filename:
+                    type: string
+                  job_id:
+                    type: string
+                    format: uri
+                  links:
+                    type: string
+                    format: style
+                  start_time:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - queued
+                    - validating
+                    - processing
+                    - pending_refresh
+                    - completed
+                    - failed
+                  total_rows:
+                    type: integer
+                  type:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              companies:
+              - company_id: comp_techstartup_2024
+                metadata:
+                  subscription_status: active
+                  subscription_plan: enterprise
+                  deal_size: $50,000
+                  monthly_active_users: 1500
+                  platform_usage_score: 85
+                  account_manager: Sarah Wilson
+              - company_id: comp_saas_corp_2024
+                metadata:
+                  subscription_status: trial
+                  subscription_plan: pro
+                  deal_size: $10,000
+                  monthly_active_users: 500
+                  platform_usage_score: 65
+                  account_manager: Mike Thompson
+            schema:
+              type: object
+              properties:
+                companies:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - company_id
+                    properties:
+                      company_id:
+                        type: string
+                        description: The unique identifier for the company
+                      metadata:
+                        type: object
+                        description: Optional company metadata. You can add, remove, or modify any properties as needed for your use case.
+                        additionalProperties: true
+                        properties:
+                          custom_company_property:
+                            type: string
+                            description: 'example: Company name, Industry, etc.'
+      tags:
+      - Companies
+components:
+  parameters:
+    AuthorizationHeader:
+      name: Authorization
+      in: header
+      required: true
+      description: 'API authentication token in the format: `Token {{API_KEY}}`
+
+        Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).'
+      schema:
+        type: string
+        default: Token ABC_1234_EFGH_5678
+      example: Token ABC_1234_EFGH_5678

@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  title: Userpilot Analytics Track API
+  version: 1.0.0
+  termsOfService: https://userpilot.io/terms-of-service/
+  description: "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com"
+  contact:
+    name: Userpilot
+    url: https://userpilot.io
+    email: support@userpilot.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+- url: https://{environment}.userpilot.io
+  description: Analytical data endpoint for Userpilot API. Choose the appropriate environment based on your data residency requirements and account type.
+  variables:
+    environment:
+      description: The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment).
+      enum:
+      - analytex
+      - analytex-eu
+      default: analytex
+tags:
+- name: Track
+paths:
+  /v1/track:
+    parameters: []
+    post:
+      summary: Track Events
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        required: false
+        example: application/json
+        schema:
+          type: string
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '202':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Accepted - Event tracking successful
+        '400':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                default: application/json
+              example: application/json
+          description: Bad Request - Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        details:
+                          type: string
+                        error:
+                          type: string
+                        error_code:
+                          type: string
+                          format: color
+                        message:
+                          type: string
+        '401':
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                default: application/json
+              example: application/json
+          description: Unauthorized - Invalid API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        details:
+                          type: string
+                        error:
+                          type: string
+                        error_code:
+                          type: string
+                          format: color
+                        message:
+                          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              user_id: user_789456
+              event_name: schedule_appointment
+              metadata:
+                appointment_date: '2024-02-01T10:00:00Z'
+                appointment_type: Initial Consultation
+                scheduled_by: Sarah Johnson
+                specialty: Cardiology
+                provider_id: dr_smith_123
+                appointment_status: confirmed
+            schema:
+              type: object
+              required:
+              - user_id
+              - event_name
+              properties:
+                user_id:
+                  type: string
+                  description: The unique identifier for the user. This is the ID that Userpilot uses to identify the user.
+                  example: user_789456
+                event_name:
+                  type: string
+                  description: Name of the event being tracked. Use descriptive names like 'schedule_appointment', 'purchase_completed', etc.
+                  example: schedule_appointment
+                metadata:
+                  type: object
+                  description: Optional event metadata. You can add, remove, or modify any properties as needed for your use case.
+                  additionalProperties: true
+                  properties:
+                    custom_event_property:
+                      type: string
+                      description: 'example: Date and time of the appointment, Product name, etc.'
+      tags:
+      - Track
+components:
+  parameters:
+    AuthorizationHeader:
+      name: Authorization
+      in: header
+      required: true
+      description: 'API authentication token in the format: `Token {{API_KEY}}`
+
+        Obtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).'
+      schema:
+        type: string
+        default: Token ABC_1234_EFGH_5678
+      example: Token ABC_1234_EFGH_5678
