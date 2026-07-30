@@ -4,7 +4,19 @@ name: Userpilot
 kind: company
 description: Userpilot is a product growth platform for in-app onboarding, user engagement,
   surveys, and product analytics — without code.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/userpilot.png
 tags:
 - Product
 - Onboarding
@@ -15,59 +27,90 @@ created: '2026-05-08'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: userpilot:userpilot-realtime-api
-  name: Userpilot Realtime API (analytex)
-  description: Userpilot Realtime API for identifying users and companies and tracking
-    events in real time. Hosted at analytex.userpilot.io with EU at analytex-eu.userpilot.io.
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: userpilot:userpilot-analytics-api
+  name: Userpilot Analytics API
+  description: The Analytics API from Userpilot — 15 operation(s) for analytics.
   humanURL: https://docs.userpilot.com/api-references/overview
   baseURL: https://analytex.userpilot.io/v1
   tags:
-  - Product
   - Analytics
-  - Tracking
-  - REST
   properties:
+  - type: OpenAPI
+    url: openapi/userpilot-analytics-api-openapi.yml
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
-  - type: OpenAPI
-    url: openapi/userpilot-analytex-openapi.json
-  - url: graphql/userpilot-graphql.md
-    type: GraphQL
-- aid: userpilot:userpilot-analytics-export-api
-  name: Userpilot Analytics Export API (appex)
-  description: Userpilot Analytics Export API for triggering and retrieving export
-    jobs and looking up resources (segments, flows, surveys, banners, checklists,
-    properties).
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - type: GraphQL
+    url: graphql/userpilot-graphql.md
+- aid: userpilot:userpilot-background-jobs-api
+  name: Userpilot Background Jobs API
+  description: The Background Jobs API from Userpilot — 2 operation(s) for background jobs.
   humanURL: https://docs.userpilot.com/api-references/overview
-  baseURL: https://appex.userpilot.io/api/v1
+  baseURL: https://analytex.userpilot.io/v1
   tags:
-  - Product
-  - Analytics
-  - Export
-  - REST
+  - Background Jobs
   properties:
+  - type: OpenAPI
+    url: openapi/userpilot-background-jobs-api-openapi.yml
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
-  - type: OpenAPI
-    url: openapi/userpilot-appex-openapi.json
-- aid: userpilot:userpilot-api
-  name: Userpilot API
-  description: Aggregate Userpilot API spec covering identification, tracking, bulk
-    operations, imports/exports, and lookups.
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - type: GraphQL
+    url: graphql/userpilot-graphql.md
+- aid: userpilot:userpilot-companies-api
+  name: Userpilot Companies API
+  description: The Companies API from Userpilot — 2 operation(s) for companies.
   humanURL: https://docs.userpilot.com/api-references/overview
-  baseURL: https://analytix.userpilot.io/v1
+  baseURL: https://analytex.userpilot.io/v1
   tags:
-  - Product
-  - Analytics
-  - REST
+  - Companies
   properties:
+  - type: OpenAPI
+    url: openapi/userpilot-companies-api-openapi.yml
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
+  - type: GraphQL
+    url: graphql/userpilot-graphql.md
+- aid: userpilot:userpilot-imports-api
+  name: Userpilot Imports API
+  description: The Imports API from Userpilot — 1 operation(s) for imports.
+  humanURL: https://docs.userpilot.com/api-references/overview
+  baseURL: https://analytex.userpilot.io/v1
+  tags:
+  - Imports
+  properties:
   - type: OpenAPI
-    url: openapi/userpilot-openapi.json
+    url: openapi/userpilot-imports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.userpilot.com/api-references/overview
+  - type: GraphQL
+    url: graphql/userpilot-graphql.md
+- aid: userpilot:userpilot-real-time-api
+  name: Userpilot Real-time API
+  description: The Real-time API from Userpilot — 2 operation(s) for real-time.
+  humanURL: https://docs.userpilot.com/api-references/overview
+  baseURL: https://analytex.userpilot.io/v1
+  tags:
+  - Real-time
+  properties:
+  - type: OpenAPI
+    url: openapi/userpilot-real-time-api-openapi.yml
+  - type: Documentation
+    url: https://docs.userpilot.com/api-references/overview
+  - type: GraphQL
+    url: graphql/userpilot-graphql.md
+- aid: userpilot:userpilot-track-api
+  name: Userpilot Track API
+  description: The Track API from Userpilot — 1 operation(s) for track.
+  humanURL: https://docs.userpilot.com/api-references/overview
+  baseURL: https://analytex.userpilot.io/v1
+  tags:
+  - Track
+  properties:
+  - type: OpenAPI
+    url: openapi/userpilot-track-api-openapi.yml
+  - type: Documentation
+    url: https://docs.userpilot.com/api-references/overview
+  - type: GraphQL
+    url: graphql/userpilot-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/userpilot-agentic-access.yml
