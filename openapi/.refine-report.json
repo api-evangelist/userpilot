@@ -1,0 +1,24 @@
+{
+  "provider": "userpilot",
+  "sources": [
+    "userpilot-analytics-api-openapi.yml",
+    "userpilot-background-jobs-api-openapi.yml",
+    "userpilot-companies-api-openapi.yml",
+    "userpilot-imports-api-openapi.yml",
+    "userpilot-real-time-api-openapi.yml",
+    "userpilot-track-api-openapi.yml"
+  ],
+  "outputs": [
+    "userpilot-analytics-api-openapi.yml",
+    "userpilot-background-jobs-api-openapi.yml",
+    "userpilot-companies-api-openapi.yml",
+    "userpilot-imports-api-openapi.yml",
+    "userpilot-real-time-api-openapi.yml",
+    "userpilot-track-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
