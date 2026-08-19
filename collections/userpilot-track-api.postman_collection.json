@@ -1,0 +1,297 @@
+{
+  "item": [
+    {
+      "id": "a49fbf8d-1ce7-4d55-b935-d56c6a1a61d0",
+      "name": "Track",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af85b7b5-5d60-4f42-bb47-45c0886f0ede",
+          "name": "Track Events",
+          "request": {
+            "name": "Track Events",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "track"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                  "type": "any",
+                  "value": "{{environment}}",
+                  "key": "environment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<string>\",\n  \"event_name\": \"<string>\",\n  \"metadata\": {\n    \"custom_event_property\": \"<string>\",\n    \"key_0\": \"string\",\n    \"key_1\": 5406,\n    \"key_2\": 421.30219501031684\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b812f537-448e-4c20-bf8d-c6b2cd48dab2",
+              "name": "Accepted - Event tracking successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                      "type": "any",
+                      "value": "{{environment}}",
+                      "key": "environment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`\nObtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                    "key": "Authorization",
+                    "value": "Token ABC_1234_EFGH_5678"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"user_789456\",\n  \"event_name\": \"schedule_appointment\",\n  \"metadata\": {\n    \"appointment_date\": \"2024-02-01T10:00:00Z\",\n    \"appointment_type\": \"Initial Consultation\",\n    \"scheduled_by\": \"Sarah Johnson\",\n    \"specialty\": \"Cardiology\",\n    \"provider_id\": \"dr_smith_123\",\n    \"appointment_status\": \"confirmed\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "86b95655-7414-4593-95aa-3435d93c2dad",
+              "name": "Bad Request - Invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                      "type": "any",
+                      "value": "{{environment}}",
+                      "key": "environment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`\nObtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                    "key": "Authorization",
+                    "value": "Token ABC_1234_EFGH_5678"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"user_789456\",\n  \"event_name\": \"schedule_appointment\",\n  \"metadata\": {\n    \"appointment_date\": \"2024-02-01T10:00:00Z\",\n    \"appointment_type\": \"Initial Consultation\",\n    \"scheduled_by\": \"Sarah Johnson\",\n    \"specialty\": \"Cardiology\",\n    \"provider_id\": \"dr_smith_123\",\n    \"appointment_status\": \"confirmed\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5ee61ce-26b7-4299-a0a7-b49e4138ccfa",
+              "name": "Unauthorized - Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                      "type": "any",
+                      "value": "{{environment}}",
+                      "key": "environment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`\nObtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                    "key": "Authorization",
+                    "value": "Token ABC_1234_EFGH_5678"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"user_789456\",\n  \"event_name\": \"schedule_appointment\",\n  \"metadata\": {\n    \"appointment_date\": \"2024-02-01T10:00:00Z\",\n    \"appointment_type\": \"Initial Consultation\",\n    \"scheduled_by\": \"Sarah Johnson\",\n    \"specialty\": \"Cardiology\",\n    \"provider_id\": \"dr_smith_123\",\n    \"appointment_status\": \"confirmed\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "analytex",
+      "key": "environment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{environment}}.userpilot.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a4376c3c-9dee-451d-b30a-d6368d33161c",
+    "name": "Userpilot Analytics Track API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com\n\nContact Support:\n Name: Userpilot\n Email: support@userpilot.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Userpilot Analytics Imports API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Imports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request Data Import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{environment}.userpilot.io/v1/imports",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "name": "Accept",
+                "value": "application/json"
+              },
+              {
+                "name": "Authorization",
+                "value": "Token ABC_1234_EFGH_5678"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Request Data Import"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

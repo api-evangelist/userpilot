@@ -1,0 +1,323 @@
+{
+  "item": [
+    {
+      "id": "64410e62-a9f6-4719-8bfd-7d03420e73b2",
+      "name": "Real-time",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0c30decd-3ed4-4de6-be72-61c7d9ae41d0",
+          "name": "Identify",
+          "request": {
+            "name": "Identify",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "identify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                  "type": "any",
+                  "value": "{{environment}}",
+                  "key": "environment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<string>\",\n  \"metadata\": {\n    \"custom_user_property\": \"<string>\",\n    \"key_0\": 5447.579854799455,\n    \"key_1\": false,\n    \"key_2\": \"string\",\n    \"key_3\": 1886\n  },\n  \"company\": {\n    \"company_id\": \"<string>\",\n    \"custom_company_property\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a09797d-db07-4375-93a0-9887ded56170",
+              "name": "Unauthorized - Invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "identify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                      "type": "any",
+                      "value": "{{environment}}",
+                      "key": "environment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`\nObtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                    "key": "Authorization",
+                    "value": "Token ABC_1234_EFGH_5678"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"user_789456\",\n  \"metadata\": {\n    \"name\": \"Sarah Johnson\",\n    \"email\": \"sarah.johnson@techstartup.com\",\n    \"job_title\": \"Product Manager\",\n    \"department\": \"Product\",\n    \"location\": \"New York, NY\",\n    \"hire_date\": \"2022-03-15\",\n    \"years_experience\": 8,\n    \"skills\": \"Product Strategy, User Research, Agile\",\n    \"subscription_plan\": \"Pro\",\n    \"last_login\": \"2024-01-15T10:30:00Z\",\n    \"preferences_language\": \"en\",\n    \"preferences_timezone\": \"America/New_York\",\n    \"preferences_notifications\": \"email\"\n  },\n  \"company\": {\n    \"company_id\": \"comp_techstartup_2024\",\n    \"name\": \"TechStartup Inc.\",\n    \"industry\": \"SaaS\",\n    \"size\": \"50-100\",\n    \"location\": \"New York, NY\",\n    \"website\": \"https://techstartup.com\",\n    \"subscription_tier\": \"Enterprise\",\n    \"annual_revenue\": \"$5M-$10M\",\n    \"founded_year\": \"2020\",\n    \"primary_product\": \"Project Management Platform\",\n    \"customer_count\": 2500,\n    \"team_engineering\": 25,\n    \"team_sales\": 15,\n    \"team_marketing\": 8,\n    \"team_support\": 12\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c16219f7-e6c6-40c7-8e3d-8a85a0082b7a",
+          "name": "Users - Bulk Identify and Update",
+          "request": {
+            "name": "Users - Bulk Identify and Update",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                "bulk_identify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                  "type": "any",
+                  "value": "{{environment}}",
+                  "key": "environment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": [\n    {\n      \"user_id\": \"<string>\",\n      \"company_id\": \"<string>\",\n      \"metadata\": {\n        \"custom_user_property\": \"<string>\",\n        \"key_0\": 9888,\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"user_id\": \"<string>\",\n      \"company_id\": \"<string>\",\n      \"metadata\": {\n        \"custom_user_property\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eddd6846-a92f-4f01-ae45-c86a4910807a",
+              "name": "Accepted - Bulk identify",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    "bulk_identify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                      "type": "any",
+                      "value": "{{environment}}",
+                      "key": "environment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`\nObtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                    "key": "Authorization",
+                    "value": "Token ABC_1234_EFGH_5678"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"users\": [\n    {\n      \"user_id\": \"user_123\",\n      \"company_id\": \"comp_techstartup_2024\",\n      \"metadata\": {\n        \"name\": \"John Smith\",\n        \"email\": \"john.smith@techstartup.com\",\n        \"job_title\": \"Support Manager\",\n        \"tickets_created\": \"2024-01-15T08:00:00Z\",\n        \"tickets_resolved\": \"2024-01-15T16:30:00Z\",\n        \"tickets_pending\": 3,\n        \"avg_resolution_time\": 3.25,\n        \"customer_satisfaction\": \"95%\",\n        \"escalation_count\": 10\n      }\n    },\n    {\n      \"user_id\": \"user_456\",\n      \"company_id\": \"comp_techstartup_2024\",\n      \"metadata\": {\n        \"name\": \"Emma Davis\",\n        \"email\": \"emma.davis@techstartup.com\",\n        \"job_title\": \"Support Specialist\",\n        \"tickets_created\": \"2024-01-15T09:15:00Z\",\n        \"tickets_resolved\": \"2024-01-15T17:45:00Z\",\n        \"tickets_pending\": 5,\n        \"avg_resolution_time\": 4.5,\n        \"customer_satisfaction\": \"92%\",\n        \"escalation_count\": 8\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Date",
+                  "value": "Mon, 19 May 2025 07:29:12 GMT",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Content-Length",
+                  "value": "379",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Connection",
+                  "value": "keep-alive",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "cache-control",
+                  "value": "max-age=0, private, must-revalidate",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "server",
+                  "value": "Cowboy",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "x-request-id",
+                  "value": "GEDdGIKmRewi6ZIAEYcB",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"end_time\": {},\n  \"file_size\": 2756,\n  \"filename\": \"string\",\n  \"job_id\": \"http://rUTuegWOagFoCLZEoCNhrYaHQI.pkleidh2,fjxWE5XFPlqEXa+TcJ3zm0GnSoriASHHVaOtMHoxn8UykHT8dyFvLL2n\",\n  \"links\": \"string\",\n  \"start_time\": \"string\",\n  \"status\": \"pending_refresh\",\n  \"total_rows\": 5814,\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "analytex",
+      "key": "environment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{environment}}.userpilot.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "82aadf92-bacf-430f-b4d9-7b494ac07e7a",
+    "name": "Userpilot Analytics Real-time API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com\n\nContact Support:\n Name: Userpilot\n Email: support@userpilot.com",
+      "type": "text/plain"
+    }
+  }
+}

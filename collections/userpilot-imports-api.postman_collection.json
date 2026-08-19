@@ -1,0 +1,314 @@
+{
+  "item": [
+    {
+      "id": "14d87836-8927-49dd-9fb9-41f5b269adfd",
+      "name": "Imports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9bceef93-e556-43af-bc24-b775b2e255f8",
+          "name": "Request Data Import",
+          "request": {
+            "name": "Request Data Import",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "imports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                  "type": "any",
+                  "value": "{{environment}}",
+                  "key": "environment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) CSV/NDJSON file containing user or company data to import"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bccad6b9-88a0-47d0-b9a9-f49806b33c0a",
+              "name": "CSV - OK - Import job successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "imports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                      "type": "any",
+                      "value": "{{environment}}",
+                      "key": "environment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`\nObtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                    "key": "Authorization",
+                    "value": "Token ABC_1234_EFGH_5678"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV/NDJSON file containing user or company data to import",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"end_time\": \"string\",\n  \"file_size\": \"string\",\n  \"filename\": \"string\",\n  \"job_id\": \"string\",\n  \"links\": \"string\",\n  \"start_time\": \"string\",\n  \"status\": \"processing\",\n  \"total_rows\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "021425f5-feb7-49f6-804b-3409e947d649",
+              "name": "Unauthorized - Invalid API key or insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "imports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                      "type": "any",
+                      "value": "{{environment}}",
+                      "key": "environment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`\nObtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                    "key": "Authorization",
+                    "value": "Token ABC_1234_EFGH_5678"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV/NDJSON file containing user or company data to import",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2de22925-8f40-46de-962c-6332024bcbca",
+              "name": "Conflict - Import job already in progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "imports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+                      "type": "any",
+                      "value": "{{environment}}",
+                      "key": "environment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API authentication token in the format: `Token {{API_KEY}}`\nObtain your API key from the [Userpilot Environment Settings](https://run.userpilot.io/environment).",
+                    "key": "Authorization",
+                    "value": "Token ABC_1234_EFGH_5678"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV/NDJSON file containing user or company data to import",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"details\": \"string\",\n      \"error\": \"string\",\n      \"error_code\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment). (This can only be one of analytex,analytex-eu)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "analytex",
+      "key": "environment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{environment}}.userpilot.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "55954362-2c12-468c-ba1f-47febe33c4e1",
+    "name": "Userpilot Analytics Imports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com\n\nContact Support:\n Name: Userpilot\n Email: support@userpilot.com",
+      "type": "text/plain"
+    }
+  }
+}
