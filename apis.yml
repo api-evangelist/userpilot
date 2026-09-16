@@ -95,22 +95,6 @@ apis:
     url: https://docs.userpilot.com/api-references/overview
   - type: GraphQL
     url: graphql/userpilot-graphql.md
-- aid: userpilot:userpilot-real-time-api
-  name: Userpilot Real-time API
-  description: The Real-time API from Userpilot — 2 operation(s) for real-time.
-  humanURL: https://docs.userpilot.com/api-references/overview
-  baseURL: https://analytex.userpilot.io/v1
-  tags:
-  - Real-Time
-  tags_raw:
-  - Real-time
-  properties:
-  - type: OpenAPI
-    url: openapi/userpilot-real-time-api-openapi.yml
-  - type: Documentation
-    url: https://docs.userpilot.com/api-references/overview
-  - type: GraphQL
-    url: graphql/userpilot-graphql.md
 - aid: userpilot:userpilot-track-api
   name: Userpilot Track API
   description: The Track API from Userpilot — 1 operation(s) for track.
@@ -121,6 +105,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/userpilot-track-api-openapi.yml
+  - type: Documentation
+    url: https://docs.userpilot.com/api-references/overview
+  - type: GraphQL
+    url: graphql/userpilot-graphql.md
+- aid: userpilot:userpilot-realtime-api
+  name: Userpilot Realtime API
+  description: The Realtime API from Userpilot — 2 operation(s) for realtime.
+  humanURL: https://docs.userpilot.com/api-references/overview
+  baseURL: https://analytex.userpilot.io/v1
+  tags:
+  - Realtime
+  properties:
+  - type: OpenAPI
+    url: openapi/userpilot-realtime-api-openapi.yml
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
   - type: GraphQL
