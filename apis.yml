@@ -87,6 +87,8 @@ apis:
   humanURL: https://docs.userpilot.com/api-references/overview
   baseURL: https://analytex.userpilot.io/v1
   tags:
+  - Import
+  tags_raw:
   - Imports
   properties:
   - type: OpenAPI
@@ -115,6 +117,8 @@ apis:
   humanURL: https://docs.userpilot.com/api-references/overview
   baseURL: https://analytex.userpilot.io/v1
   tags:
+  - Real-Time
+  tags_raw:
   - Realtime
   properties:
   - type: OpenAPI
