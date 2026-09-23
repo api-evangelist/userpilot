@@ -1,9 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Userpilot Analytics Track API
+  title: Userpilot Track API
   version: 1.0.0
   termsOfService: https://userpilot.io/terms-of-service/
-  description: "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com"
+  description: 'Userpilot''s API suite for user identification, event tracking, data import/export, and user/company management.
+
+
+    Contact Support:
+
+    Email: support@userpilot.com'
   contact:
     name: Userpilot
     url: https://userpilot.io
@@ -141,6 +146,8 @@ paths:
                       description: 'example: Date and time of the appointment, Product name, etc.'
       tags:
       - Track
+      operationId: postV1Track
+      x-operation-id-source: derived
 components:
   parameters:
     AuthorizationHeader:

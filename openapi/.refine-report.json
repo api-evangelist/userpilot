@@ -1,24 +1,62 @@
 {
   "provider": "userpilot",
   "sources": [
-    "userpilot-analytics-api-openapi.yml",
-    "userpilot-background-jobs-api-openapi.yml",
-    "userpilot-companies-api-openapi.yml",
-    "userpilot-imports-api-openapi.yml",
-    "userpilot-real-time-api-openapi.yml",
-    "userpilot-track-api-openapi.yml"
+    "_original/userpilot-analytex-openapi.json",
+    "_original/userpilot-appex-openapi.json"
   ],
   "outputs": [
-    "userpilot-analytics-api-openapi.yml",
     "userpilot-background-jobs-api-openapi.yml",
     "userpilot-companies-api-openapi.yml",
     "userpilot-imports-api-openapi.yml",
     "userpilot-real-time-api-openapi.yml",
-    "userpilot-track-api-openapi.yml"
+    "userpilot-track-api-openapi.yml",
+    "userpilot-analytics-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "userpilot-analytex-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "userpilot-analytex-openapi.json: tagged paths POST /v1/companies/identify -> Companies",
+    "userpilot-analytex-openapi.json: tagged paths POST /v1/companies/bulk_identify -> Companies",
+    "userpilot-analytex-openapi.json: tagged paths POST /v1/track -> Track",
+    "userpilot-analytex-openapi.json: tagged paths GET /v1/background_jobs -> Background Jobs",
+    "userpilot-analytex-openapi.json: tagged paths GET /v1/background_jobs/{{job_id}} -> Background Jobs",
+    "userpilot-analytex-openapi.json: tagged paths POST /v1/imports -> Imports",
+    "userpilot-analytex-openapi.json: declared missing tag: Background Jobs",
+    "userpilot-analytex-openapi.json: declared missing tag: Companies",
+    "userpilot-analytex-openapi.json: declared missing tag: Imports",
+    "userpilot-analytex-openapi.json: declared missing tag: Real-time",
+    "userpilot-analytex-openapi.json: declared missing tag: Track",
+    "userpilot-appex-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/jobs/{job_id} -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/jobs/ -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/user_properties -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/company_properties -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/segments -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/features_events -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/events_properties -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/flows -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/banners -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/embeds -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/spotlights -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/surveys -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/resource_center_modules -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths GET /api/v1/analytics/exports/lookups/checklists -> Analytics",
+    "userpilot-appex-openapi.json: tagged paths POST /api/v1/analytics/exports -> Analytics",
+    "userpilot-appex-openapi.json: declared missing tag: Analytics",
+    "superseded outputs removed: userpilot-realtime-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 6 total)"
+  ],
+  "skipped": [
+    "userpilot-analytics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "userpilot-background-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "userpilot-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "userpilot-imports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "userpilot-realtime-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "userpilot-track-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

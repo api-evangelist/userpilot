@@ -1,9 +1,31 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: Userpilot Analytics API
   version: 1.0.0
   termsOfService: https://userpilot.io/terms-of-service/
-  description: "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com"
+  description: 'Userpilot''s API suite for user identification, event tracking, data import/export, and user/company management.
+
+
+    Authentication:
+
+    All endpoints that require authentication expect an HTTP header in the following format:
+
+
+    Authorization: Token {{API_KEY}}
+
+
+    Example (cURL):
+
+    curl -X GET ''https://appex.userpilot.io/v1/identify'' \
+
+    -H ''Authorization: Token abcd1234efgh5678'' \
+
+    -H ''Content-Type: application/json''
+
+
+    Contact Support:
+
+    Email: support@userpilot.com'
   contact:
     name: Userpilot
     url: https://userpilot.io
@@ -12,15 +34,8 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 servers:
-- url: https://{environment}.userpilot.io
-  description: Analytical data endpoint for Userpilot API. Choose the appropriate environment based on your data residency requirements and account type.
-  variables:
-    environment:
-      description: The Userpilot environment endpoint for your account. Most customers use the default US region (analytex), while EU customers with data residency requirements use the EU region (analytex-eu). You can find your specific endpoint URL in your Userpilot dashboard under [Environment Settings](https://run.userpilot.io/environment).
-      enum:
-      - analytex
-      - analytex-eu
-      default: analytex
+- url: https://appex.userpilot.io
+  description: Application endpoint
 tags:
 - name: Analytics
 paths:
@@ -140,6 +155,8 @@ paths:
                           type: string
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsJobsByJobId
+      x-operation-id-source: derived
   /api/v1/analytics/exports/jobs/:
     parameters: []
     get:
@@ -207,6 +224,8 @@ paths:
                           type: string
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsJobs
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/user_properties:
     get:
       summary: Get user properties
@@ -231,6 +250,8 @@ paths:
                 is_auto_property: false
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsUserProperties
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/company_properties:
     get:
       summary: Get company properties
@@ -255,6 +276,8 @@ paths:
                 is_auto_property: false
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsCompanyProperties
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/segments:
     get:
       summary: Get segments
@@ -280,11 +303,13 @@ paths:
                         type: object
                         properties:
                           after:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                           before:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                       limit:
                         type: integer
                       total_count:
@@ -306,6 +331,8 @@ paths:
                   total_count: 1
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsSegments
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/features_events:
     get:
       summary: Get features & events
@@ -327,6 +354,8 @@ paths:
                 data_type: string
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsFeaturesEvents
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/events_properties:
     get:
       summary: Get trackable events' properties/attributes (paginated)
@@ -358,11 +387,13 @@ paths:
                         type: object
                         properties:
                           after:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                           before:
-                            type: string
-                            nullable: true
+                            type:
+                            - string
+                            - 'null'
                       limit:
                         type: integer
                       total_count:
@@ -391,6 +422,8 @@ paths:
                   total_count: 53
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsEventsProperties
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/flows:
     get:
       summary: Get flows (experiences)
@@ -411,6 +444,8 @@ paths:
                 title: Onboarding Flow
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsFlows
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/banners:
     get:
       summary: Get banners
@@ -431,6 +466,8 @@ paths:
                 title: Promo Banner
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsBanners
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/embeds:
     get:
       summary: Get embeds
@@ -455,6 +492,8 @@ paths:
                 type: card
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsEmbeds
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/spotlights:
     get:
       summary: Get spotlights
@@ -475,6 +514,8 @@ paths:
                 title: New Feature Spotlight
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsSpotlights
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/surveys:
     get:
       summary: Get surveys (with modules)
@@ -501,6 +542,8 @@ paths:
                   question: How was it?
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsSurveys
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/resource_center_modules:
     get:
       summary: Get resource center modules
@@ -522,6 +565,8 @@ paths:
                 data_type: string
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsResourceCenterModules
+      x-operation-id-source: derived
   /api/v1/analytics/exports/lookups/checklists:
     get:
       summary: Get checklists (with tasks)
@@ -543,6 +588,8 @@ paths:
                 data_type: string
       tags:
       - Analytics
+      operationId: getApiV1AnalyticsExportsLookupsChecklists
+      x-operation-id-source: derived
   /api/v1/analytics/exports:
     parameters:
     - $ref: '#/components/parameters/AuthorizationHeader'
@@ -683,6 +730,8 @@ paths:
                   type: string
       tags:
       - Analytics
+      operationId: postApiV1AnalyticsExports
+      x-operation-id-source: derived
 components:
   parameters:
     AuthorizationHeader:

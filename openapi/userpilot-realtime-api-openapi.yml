@@ -1,9 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Userpilot Analytics Real-time API
+  title: Userpilot Real Time API
   version: 1.0.0
   termsOfService: https://userpilot.io/terms-of-service/
-  description: "Userpilot's API suite for user identification, event tracking, data import/export, and user/company management.\n\nContact Support:\n Email: support@userpilot.com"
+  description: 'Userpilot''s API suite for user identification, event tracking, data import/export, and user/company management.
+
+
+    Contact Support:
+
+    Email: support@userpilot.com'
   contact:
     name: Userpilot
     url: https://userpilot.io
@@ -22,13 +27,13 @@ servers:
       - analytex-eu
       default: analytex
 tags:
-- name: Real-time
+- name: Realtime
 paths:
   /v1/identify:
     parameters: []
     post:
       tags:
-      - Real-time
+      - Realtime
       summary: Identify
       parameters:
       - name: Content-Type
@@ -140,11 +145,13 @@ paths:
                       type: string
                       description: 'example: Company name, Industry, etc.'
                   additionalProperties: true
+      operationId: postV1Identify
+      x-operation-id-source: derived
   /v1/users/bulk_identify:
     parameters: []
     post:
       tags:
-      - Real-time
+      - Realtime
       summary: Users - Bulk Identify and Update
       parameters:
       - name: Content-Type
@@ -202,8 +209,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  end_time:
-                    nullable: true
+                  end_time: {}
                   file_size:
                     type: integer
                   filename:
@@ -284,6 +290,8 @@ paths:
                           custom_user_property:
                             type: string
                             description: 'example: Name, Job title, etc.'
+      operationId: postV1UsersBulkIdentify
+      x-operation-id-source: derived
 components:
   parameters:
     AuthorizationHeader:
