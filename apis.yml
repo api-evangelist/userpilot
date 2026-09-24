@@ -51,8 +51,6 @@ apis:
     url: openapi/userpilot-analytics-api-openapi.yml
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
-  - type: GraphQL
-    url: graphql/userpilot-graphql.md
 - aid: userpilot:userpilot-background-jobs-api
   name: Userpilot Background Jobs API
   description: The Background Jobs API from Userpilot — 2 operation(s) for background jobs.
@@ -65,8 +63,6 @@ apis:
     url: openapi/userpilot-background-jobs-api-openapi.yml
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
-  - type: GraphQL
-    url: graphql/userpilot-graphql.md
 - aid: userpilot:userpilot-companies-api
   name: Userpilot Companies API
   description: The Companies API from Userpilot — 2 operation(s) for companies.
@@ -79,8 +75,6 @@ apis:
     url: openapi/userpilot-companies-api-openapi.yml
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
-  - type: GraphQL
-    url: graphql/userpilot-graphql.md
 - aid: userpilot:userpilot-imports-api
   name: Userpilot Imports API
   description: The Imports API from Userpilot — 1 operation(s) for imports.
@@ -95,8 +89,6 @@ apis:
     url: openapi/userpilot-imports-api-openapi.yml
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
-  - type: GraphQL
-    url: graphql/userpilot-graphql.md
 - aid: userpilot:userpilot-track-api
   name: Userpilot Track API
   description: The Track API from Userpilot — 1 operation(s) for track.
@@ -109,8 +101,6 @@ apis:
     url: openapi/userpilot-track-api-openapi.yml
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
-  - type: GraphQL
-    url: graphql/userpilot-graphql.md
 - aid: userpilot:userpilot-realtime-api
   name: Userpilot Realtime API
   description: The Realtime API from Userpilot — 2 operation(s) for realtime.
@@ -125,8 +115,6 @@ apis:
     url: openapi/userpilot-realtime-api-openapi.yml
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
-  - type: GraphQL
-    url: graphql/userpilot-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/userpilot-agentic-access.yml
