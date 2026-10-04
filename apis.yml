@@ -107,6 +107,8 @@ apis:
   humanURL: https://docs.userpilot.com/api-references/overview
   baseURL: https://analytex.userpilot.io/v1
   tags:
+  - Real-Time
+  tags_raw:
   - Realtime
   properties:
   - type: OpenAPI
@@ -114,6 +116,9 @@ apis:
   - type: Documentation
     url: https://docs.userpilot.com/api-references/overview
 common:
+- type: CapabilityMap
+  url: capabilities/userpilot-capability-edges.yml
+  name: Userpilot Business Capability Map
 - type: AgenticAccess
   url: agentic-access/userpilot-agentic-access.yml
 - type: TrustCenter
