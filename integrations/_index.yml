@@ -44,3 +44,16 @@
     year: '2020'
   status: not-a-workflow
   arazzo: null
+- slug: userpilot-hubspot-own
+  label: HubSpot (own)
+  partner: hubspot
+  partner_name: HubSpot (own)
+  category: MARKETING_ANALYTICS
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/userpilot-1587444
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
