@@ -1,4 +1,4 @@
-# Userpilot (userpilot)
+# Userpilot
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,97 +66,182 @@
 
 Userpilot is a product growth platform for in-app onboarding, user engagement, surveys, and product analytics — without code.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/userpilot/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/userpilot/refs/heads/main/apis.yml)
+**Areas:** Product · Onboarding · In-App Guidance · Analytics · Customer Success
 
-## Tags
+## Userpilot on APIs.io
 
-- Product
-- Onboarding
-- In-App Guidance
-- Analytics
-- Customer Success
+Everything profiled for Userpilot is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/userpilot/](https://apis.io/providers/userpilot/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2026-05-08
-- **Modified:** 2026-05-19
+- [Userpilot Analytics API](https://apis.io/apis/userpilot/userpilot-analytics-api/) — The Analytics API from Userpilot — 15 operation(s) for analytics.
+- [Userpilot Background Jobs API](https://apis.io/apis/userpilot/userpilot-background-jobs-api/) — The Background Jobs API from Userpilot — 2 operation(s) for background jobs.
+- [Userpilot Companies API](https://apis.io/apis/userpilot/userpilot-companies-api/) — The Companies API from Userpilot — 2 operation(s) for companies.
+- [Userpilot Imports API](https://apis.io/apis/userpilot/userpilot-imports-api/) — The Imports API from Userpilot — 1 operation(s) for imports.
+- [Userpilot Track API](https://apis.io/apis/userpilot/userpilot-track-api/) — The Track API from Userpilot — 1 operation(s) for track.
+- [Userpilot Realtime API](https://apis.io/apis/userpilot/userpilot-realtime-api/) — The Realtime API from Userpilot — 2 operation(s) for realtime.
 
-## APIs
+### Published properties
 
-### Userpilot Realtime API (analytex)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Userpilot Realtime API for identifying users and companies and tracking events in real time. Hosted at analytex.userpilot.io with EU at analytex-eu.userpilot.io.
+#### GraphQL (1)
 
-- **Human URL:** [https://docs.userpilot.com/api-references/overview](https://docs.userpilot.com/api-references/overview)
-- **Base URL:** `https://analytex.userpilot.io/v1`
+GraphQL schemas.
 
-#### Tags
+- [Moved to /providers/userpilot/](https://apis.io/graphqls/userpilot/userpilot-graphql/)
 
-- Product
-- Analytics
-- Tracking
-- REST
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://docs.userpilot.com/api-references/overview)
-- [OpenAPI](openapi/userpilot-analytex-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/userpilot-analytex.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/userpilot-analytex.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [userpilot](https://apis.io/servers/userpilot/userpilot/)
 
-### Userpilot Analytics Export API (appex)
+#### Agentic access (1)
 
-Userpilot Analytics Export API for triggering and retrieving export jobs and looking up resources (segments, flows, surveys, banners, checklists, properties).
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://docs.userpilot.com/api-references/overview](https://docs.userpilot.com/api-references/overview)
-- **Base URL:** `https://appex.userpilot.io/api/v1`
+- [Userpilot Agentic Access](https://apis.io/agentic-access/userpilot/userpilot-agentic-access/)
 
-#### Tags
+#### JSON Schema (1)
 
-- Product
-- Analytics
-- Export
-- REST
+The data models the API reads and writes.
 
-#### Properties
+- [ErrorResponse](https://apis.io/schemas/userpilot/userpilot-errorresponse/)
 
-- [Documentation](https://docs.userpilot.com/api-references/overview)
-- [OpenAPI](openapi/userpilot-appex-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/userpilot-appex.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/userpilot-appex.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### JSON Structure (1)
 
-### Userpilot API
+Data models expressed in JSON Structure.
 
-Aggregate Userpilot API spec covering identification, tracking, bulk operations, imports/exports, and lookups.
+- [Userpilot Structure](https://apis.io/json-structure/userpilot/userpilot-structure/)
 
-- **Human URL:** [https://docs.userpilot.com/api-references/overview](https://docs.userpilot.com/api-references/overview)
-- **Base URL:** `https://analytix.userpilot.io/v1`
+#### Examples (17)
 
-#### Tags
+Example requests and responses.
 
-- Product
-- Analytics
-- REST
+- [Userpilot Get Apiv1Analyticsexportslookupsbanners Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupsbanners-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupschecklists Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupschecklists-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupscompany Properties Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupscompany-properties-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupsembeds Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupsembeds-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupsevents Properties Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupsevents-properties-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupsfeatures Events Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupsfeatures-events-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupsflows Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupsflows-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupsresource Center Modules Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupsresource-center-modules-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupssegments Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupssegments-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupsspotlights Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupsspotlights-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupssurveys Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupssurveys-example/)
+- [Userpilot Get Apiv1Analyticsexportslookupsuser Properties Example](https://apis.io/examples/userpilot/userpilot-get-apiv1analyticsexportslookupsuser-properties-example/)
+- [Userpilot Post V1Companiesbulk Identify Example](https://apis.io/examples/userpilot/userpilot-post-v1companiesbulk-identify-example/)
+- [Userpilot Post V1Companiesidentify Example](https://apis.io/examples/userpilot/userpilot-post-v1companiesidentify-example/)
+- [Userpilot Post V1Imports Example](https://apis.io/examples/userpilot/userpilot-post-v1imports-example/)
+- [Userpilot Post V1Track Example](https://apis.io/examples/userpilot/userpilot-post-v1track-example/)
+- [Userpilot Post V1Usersbulk Identify Example](https://apis.io/examples/userpilot/userpilot-post-v1usersbulk-identify-example/)
 
-#### Properties
+#### Collections (9)
 
-- [Documentation](https://docs.userpilot.com/api-references/overview)
-- [OpenAPI](openapi/userpilot-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Open Collection](collections/userpilot.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-## Common Properties
+- [Userpilot API](https://apis.io/collections/userpilot/open-userpilot/)
+- [Userpilot API](https://apis.io/collections/userpilot/open-userpilot-analytex/)
+- [Userpilot Analytics API](https://apis.io/collections/userpilot/open-userpilot-analytics-api/)
+- [Userpilot API](https://apis.io/collections/userpilot/open-userpilot-appex/)
+- [Userpilot Analytics Background Jobs API](https://apis.io/collections/userpilot/open-userpilot-background-jobs-api/)
+- [Userpilot Analytics Companies API](https://apis.io/collections/userpilot/open-userpilot-companies-api/)
+- [Userpilot Analytics Imports API](https://apis.io/collections/userpilot/open-userpilot-imports-api/)
+- [Userpilot Analytics Real-time API](https://apis.io/collections/userpilot/open-userpilot-real-time-api/)
+- [Userpilot Analytics Track API](https://apis.io/collections/userpilot/open-userpilot-track-api/)
 
-- [GitHub Organization](https://github.com/Userpilot)
-- [LinkedIn](https://www.linkedin.com/company/teamuserpilot)
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Userpilot — jsonschema rules](https://apis.io/rules/userpilot/userpilot-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Userpilot Domain Security](https://apis.io/security/userpilot/userpilot-domain-security/)
+- [Userpilot Trust Center](https://apis.io/security/userpilot/userpilot-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Userpilot Plans Pricing](https://apis.io/plans/userpilot/userpilot-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Userpilot Rate Limits](https://apis.io/rate-limits/userpilot/userpilot-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Userpilot Finops](https://apis.io/finops/userpilot/userpilot-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://userpilot.com/)
 - [Documentation](https://docs.userpilot.com/api-references/overview)
-- [Plans](plans/userpilot-plans-pricing.yml)
-- [Rate Limits](rate-limits/userpilot-rate-limits.yml)
-- [Fin Ops](finops/userpilot-finops.yml)
-- [Integrations](https://userpilot.com/integrations/)
-- [L L Ms Txt](https://docs.userpilot.com/llms.txt)
+- [Blog](https://userpilot.com/blog/)
+- [GitHub](https://github.com/Userpilot)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 23.5** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.7 |
+| Contract quality | 44.0 |
+| Contract governance | 9.8 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 13.2 |
+
+**Agent readiness 29.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/userpilot/](https://apis.io/providers/userpilot/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Userpilot: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/userpilot/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
